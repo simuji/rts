@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://db08acveb2vkb"]
+
+[ext_resource type="Script" uid="uid://b5qwt7okw7moh" path="res://spawn_ui.gd" id="1_06jfg"]
+
+[node name="SpawnUI" type="Node2D"]
+script = ExtResource("1_06jfg")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 408.0
+offset_top = 226.0
+offset_right = 744.0
+offset_bottom = 438.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 521.0
+offset_top = 248.0
+offset_right = 633.0
+offset_bottom = 297.0
+text = "是否放置该单位
+"
+
+[node name="BT_YES" type="Button" parent="."]
+offset_left = 457.0
+offset_top = 372.0
+offset_right = 514.0
+offset_bottom = 403.0
+text = "确认
+"
+
+[node name="BT_NO" type="Button" parent="."]
+offset_left = 636.0
+offset_top = 369.0
+offset_right = 695.0
+offset_bottom = 400.0
+text = "取消
+"
+
+[connection signal="pressed" from="BT_YES" to="." method="_on_bt_yes_pressed"]
+[connection signal="pressed" from="BT_NO" to="." method="_on_bt_no_pressed"]

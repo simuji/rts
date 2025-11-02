@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5fcymf487hu3"]
+
+[ext_resource type="Script" uid="uid://cuvpporse08ac" path="res://global/cus_static_body.gd" id="1_1ajh6"]
+
+[node name="CusStaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_1ajh6")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

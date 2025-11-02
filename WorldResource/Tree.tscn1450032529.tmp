@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://ywawfhlmxoou"]
+
+[ext_resource type="Script" uid="uid://cup1ums14hvf5" path="res://WorldResource/tree.gd" id="1_oeki0"]
+[ext_resource type="Texture2D" uid="uid://kg0l0ftx7fh5" path="res://rts.png" id="2_g1qwo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oeki0"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1qwo"]
+bg_color = Color(0.05000007, 1, 0, 1)
+
+[node name="Tree" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_oeki0")
+
+[node name="ChopArea" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("2_g1qwo")
+region_enabled = true
+region_rect = Rect2(192, 192, 96, 64)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -27.0
+offset_top = -71.0
+offset_right = 26.0
+offset_bottom = -66.0
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_oeki0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g1qwo")
+value = 100.0
+show_percentage = false
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -6)
+radius = 20.0
+
+[connection signal="body_entered" from="ChopArea" to="." method="_on_chop_area_body_entered"]
+[connection signal="body_exited" from="ChopArea" to="." method="_on_chop_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://v13o8xaigbvg"]
+
+[ext_resource type="PackedScene" uid="uid://druesh2rh5xrk" path="res://building/building.tscn" id="1_ejq38"]
+[ext_resource type="Script" uid="uid://drfprqp23cyfi" path="res://building/camp.gd" id="2_47b5n"]
+
+[node name="camp" instance=ExtResource("1_ejq38")]
+script = ExtResource("2_47b5n")
+
+[node name="Sprite2D" parent="." index="2"]
+position = Vector2(3, -32)
+region_rect = Rect2(304, 128, 64, 64)

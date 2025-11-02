@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://druesh2rh5xrk"]
+
+[ext_resource type="Script" uid="uid://c46bro0oaro30" path="res://building/building.gd" id="1_5uxbu"]
+[ext_resource type="Texture2D" uid="uid://kg0l0ftx7fh5" path="res://rts.png" id="1_tt30a"]
+[ext_resource type="Texture2D" uid="uid://bc2504cr8at6m" path="res://UI/selectBox.png" id="2_jaabe"]
+[ext_resource type="PackedScene" uid="uid://xa7gpckbbqno" path="res://UI/HealthPointProgressBar.tscn" id="4_s5ctk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgp2u"]
+radius = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgp2u"]
+radius = 26.0
+height = 52.0
+
+[node name="building" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+input_pickable = true
+script = ExtResource("1_5uxbu")
+
+[node name="SelectedBox" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -43)
+scale = Vector2(2.1875, 2.4492185)
+texture = ExtResource("2_jaabe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_tt30a")
+region_enabled = true
+region_rect = Rect2(224, 128, 64, 64)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -27)
+radius = 30.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="ClickArea2D" type="Area2D" parent="."]
+collision_layer = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea2D"]
+position = Vector2(-1, -27)
+shape = SubResource("CircleShape2D_vgp2u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CapsuleShape2D_vgp2u")
+
+[node name="HealthPointProgressBar" parent="." instance=ExtResource("4_s5ctk")]
+offset_left = -25.0
+offset_top = -65.0
+offset_right = 26.0
+offset_bottom = -61.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="ClickArea2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ClickArea2D" to="." method="_on_area_2d_mouse_exited"]

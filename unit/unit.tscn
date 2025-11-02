@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfoyiul2u3bgw"]
+
+[ext_resource type="Script" uid="uid://bh6v4ten5xytx" path="res://unit/unit.gd" id="1_hs7ws"]
+[ext_resource type="Texture2D" uid="uid://bc2504cr8at6m" path="res://UI/selectBox.png" id="2_japly"]
+[ext_resource type="Texture2D" uid="uid://cdmllxi5bd0k2" path="res://Cache_21375a8e2938a1ec.png" id="3_s1ym6"]
+[ext_resource type="PackedScene" uid="uid://b1enarprt4brw" path="res://global/AttributeComponent.tscn" id="4_japly"]
+[ext_resource type="PackedScene" uid="uid://xa7gpckbbqno" path="res://UI/HealthPointProgressBar.tscn" id="5_s1ym6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hs7ws"]
+radius = 31.025192
+
+[node name="unit" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_hs7ws")
+
+[node name="SelectedBox" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+texture = ExtResource("2_japly")
+
+[node name="body" type="Sprite2D" parent="."]
+visibility_layer = 2
+position = Vector2(0, -32)
+texture = ExtResource("3_s1ym6")
+hframes = 5
+region_enabled = true
+region_rect = Rect2(0, 128, 320, 64)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 35.0
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+neighbor_distance = 100.0
+debug_enabled = true
+
+[node name="SearchArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SearchArea"]
+position = Vector2(-1, -7)
+scale = Vector2(1, 0.8)
+shape = SubResource("CircleShape2D_hs7ws")
+
+[node name="AttributeComponent" parent="." instance=ExtResource("4_japly")]
+
+[node name="HealthPointProgressBar" parent="." instance=ExtResource("5_s1ym6")]
+offset_left = -13.0
+offset_top = -35.0
+offset_right = 13.0
+offset_bottom = -33.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
+[connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]

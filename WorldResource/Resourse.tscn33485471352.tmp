@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm6c33wedu6f0"]
+
+[ext_resource type="PackedScene" uid="uid://c5fcymf487hu3" path="res://global/CusStaticBody.tscn" id="1_6jpe1"]
+[ext_resource type="Script" uid="uid://ccis86f6a2q2h" path="res://WorldResource/resourse.gd" id="2_6ghqv"]
+[ext_resource type="Texture2D" uid="uid://kg0l0ftx7fh5" path="res://rts.png" id="3_6ghqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2fke"]
+size = Vector2(17, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ghqv"]
+radius = 26.019224
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nic6n"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8shjm"]
+bg_color = Color(0.05000007, 1, 0, 1)
+
+[node name="Resource" instance=ExtResource("1_6jpe1")]
+collision_layer = 2147483650
+collision_mask = 2147483649
+input_pickable = true
+script = ExtResource("2_6ghqv")
+metadata/_edit_horizontal_guides_ = [-44.0]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_d2fke")
+
+[node name="ChopArea" type="Area2D" parent="." index="1"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChopArea" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_6ghqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+position = Vector2(0, -32)
+texture = ExtResource("3_6ghqv")
+region_enabled = true
+region_rect = Rect2(192, 192, 96, 64)
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+[node name="ProgressBar" type="ProgressBar" parent="." index="4"]
+offset_left = -27.0
+offset_top = -71.0
+offset_right = 26.0
+offset_bottom = -66.0
+theme_override_font_sizes/font_size = 12
+theme_override_styles/background = SubResource("StyleBoxFlat_nic6n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8shjm")
+value = 100.0
+show_percentage = false
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." index="5"]
+position = Vector2(0, -6)
+radius = 12.0
+
+[connection signal="body_entered" from="ChopArea" to="." method="_on_chop_area_body_entered"]
+[connection signal="body_exited" from="ChopArea" to="." method="_on_chop_area_body_exited"]

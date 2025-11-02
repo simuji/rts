@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkfh7f2ubd8dt"]
+
+[ext_resource type="PackedScene" uid="uid://cm6c33wedu6f0" path="res://WorldResource/Resourse.tscn" id="1_brfkd"]
+[ext_resource type="Script" uid="uid://cuop83ta64qfp" path="res://WorldResource/tree.gd" id="2_p2exo"]
+
+[node name="tree" instance=ExtResource("1_brfkd")]
+script = ExtResource("2_p2exo")
+
+[node name="NavigationObstacle2D" parent="." index="1"]
+radius = 17.1
+
+[node name="CollisionShape2D" parent="Click2D" index="0"]
+position = Vector2(0, -16.5)
+
+[node name="HealthPointProgressBar" parent="." index="5"]
+offset_left = -28.0
+offset_top = -70.0
+offset_right = 30.0
