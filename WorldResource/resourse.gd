@@ -6,12 +6,13 @@ var units = 0
 var mouseEntered = false
 
 @onready var bar = $HealthPointProgressBar
+@onready var attributeComponent = $AttributeComponent
 @onready var curMousePosition 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentTime = totalTime
 	bar.max_value = totalTime
-	
+	attributeComponent.Destroyed.connect(_on_destroy)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	bar.value = currentTime
@@ -23,3 +24,6 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	Game.setMouseTarget(null)
+	
+func _on_destroy():
+	queue_free()

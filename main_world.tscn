@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwnyh85ml00tq"]
+[gd_scene load_steps=24 format=3 uid="uid://cwnyh85ml00tq"]
 
 [ext_resource type="Texture2D" uid="uid://kg0l0ftx7fh5" path="res://rts.png" id="1_itk02"]
 [ext_resource type="Script" uid="uid://bcugrfygndlh8" path="res://main_world.gd" id="1_whfra"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dkfh7f2ubd8dt" path="res://WorldResource/tree.tscn" id="7_7ktct"]
 [ext_resource type="PackedScene" uid="uid://cou44g84j3e6s" path="res://building/house.tscn" id="7_aac4l"]
 [ext_resource type="PackedScene" uid="uid://bl4vvey1c2tts" path="res://WorldResource/stone.tscn" id="8_7ktct"]
-[ext_resource type="PackedScene" uid="uid://v13o8xaigbvg" path="res://building/camp.tscn" id="8_uks48"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_72mcj"]
 vertices = PackedVector2Array(705.0703, 24.953125, 707.9219, 426.97656, 26.898438, 426.0078, 23.09375, 22.039063)
@@ -262,13 +261,6 @@ y_sort_enabled = true
 [node name="buildings" type="Node2D" parent="." groups=["buildings"]]
 y_sort_enabled = true
 position = Vector2(219, 216)
-
-[node name="house" parent="buildings" instance=ExtResource("7_aac4l")]
-y_sort_enabled = false
-
-[node name="camp" parent="buildings" instance=ExtResource("8_uks48")]
-y_sort_enabled = false
-position = Vector2(97, 0)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_72mcj")

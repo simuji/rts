@@ -18,8 +18,8 @@ script = ExtResource("1_b3bc3")
 theme_override_styles/panel = SubResource("StyleBoxFlat_b3bc3")
 
 [node name="ItemList" type="ItemList" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 160.0
+offset_bottom = 23.0
 max_text_lines = 2
 
 [node name="Label" type="Label" parent="ItemList"]

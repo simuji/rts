@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfoyiul2u3bgw"]
+[gd_scene load_steps=8 format=3 uid="uid://bfoyiul2u3bgw"]
 
 [ext_resource type="Script" uid="uid://bh6v4ten5xytx" path="res://unit/unit.gd" id="1_hs7ws"]
 [ext_resource type="Texture2D" uid="uid://bc2504cr8at6m" path="res://UI/selectBox.png" id="2_japly"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hs7ws"]
 radius = 31.025192
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s1ym6"]
+radius = 24.0
 
 [node name="unit" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -53,8 +56,17 @@ offset_top = -35.0
 offset_right = 13.0
 offset_bottom = -33.0
 
+[node name="ClickArea2D" type="Area2D" parent="."]
+collision_layer = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea2D"]
+position = Vector2(1, -17)
+shape = SubResource("CircleShape2D_s1ym6")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="SearchArea" to="." method="_on_search_area_body_entered"]
 [connection signal="body_exited" from="SearchArea" to="." method="_on_search_area_body_exited"]
+[connection signal="mouse_entered" from="ClickArea2D" to="." method="_on_click_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ClickArea2D" to="." method="_on_click_area_2d_mouse_exited"]

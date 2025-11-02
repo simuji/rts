@@ -7,13 +7,14 @@ extends CharacterBody2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var target = position
 
-@onready var SearchedObjectMap: Dictionary #保存现在在unit的搜寻范围内的物体
+@onready var searchedObjectMap: Dictionary #保存现在在unit的搜寻范围内的物体
+@onready var attributeComponent = $AttributeComponent
 
 var currentTarget: Object #保存当前unit的target
 var currentTargetString: String
 var bTargetInArea:bool = false
-var DEFAULT_TARGET_DESIRE_DISTANCE = 35
-
+var DEFAULT_TARGET_DESIRE_DISTANCE = 15
+var mouseEntered = false
 var arrive = false #当前unit是否到达target
 var follow_cursor = false
 var speed = 40
@@ -21,6 +22,7 @@ var speed = 40
 func _ready() -> void:
 	set_selected(selected)
 	add_to_group("Units", true)
+	attributeComponent.Destroyed.connect(_on_destroy)
 func set_selected(value:bool):
 	selectedBox.visible = value
 	selected = value
@@ -78,12 +80,25 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 	
 func _on_search_area_body_entered(body: Node2D) -> void:
 	print(body.name + "entered search area, is string is" + body.to_string())
-	SearchedObjectMap[body.to_string()] = body.name
+	searchedObjectMap[body.to_string()] = body.name
 	if body.to_string() == currentTargetString:
 		bTargetInArea = true
 func _on_search_area_body_exited(body: Node2D) -> void:
-	if SearchedObjectMap.find_key(body.to_string()) != null:
-		SearchedObjectMap.erase(body.to_string())
+	if searchedObjectMap.find_key(body.to_string()) != null:
+		searchedObjectMap.erase(body.to_string())
 	if body.to_string() == currentTargetString:
 		print("target exit")
 		bTargetInArea = false
+
+func _on_destroy():
+	queue_free()
+
+
+func _on_click_area_2d_mouse_entered() -> void:
+	mouseEntered = true
+	Game.setMouseTarget(self)
+
+
+func _on_click_area_2d_mouse_exited() -> void:
+	mouseEntered = false
+	Game.setMouseTarget(null)

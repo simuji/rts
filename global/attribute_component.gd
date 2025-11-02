@@ -20,8 +20,12 @@ func _ready() -> void:
 	DamageController.hit.connect(_on_take_damage)
 
 func _on_take_damage(damageInfo: DamageController.DamageInfo):
+	print("take damage", get_parent().name)
+	if damageInfo.getTarget() != self.get_parent():
+		return
 	var oldhealthPoint = healthPoint
 	healthPoint = max(healthPoint - damageInfo.getDamageCount(), 0)
+	print("old health is", oldhealthPoint, "new health is", healthPoint)
 	if healthPoint != oldhealthPoint:
 		HealthChanged.emit(oldhealthPoint, healthPoint)
 	if healthPoint <= 0:
