@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://jdgor2f63qqt"]
+
+[ext_resource type="Script" uid="uid://61nr4pshvhmq" path="res://UI/panel_container.gd" id="1_ooca1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ooca1"]
+bg_color = Color(0.49411765, 0.49411765, 0.49411765, 0.49411765)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(32, 32)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ooca1")
+script = ExtResource("1_ooca1")

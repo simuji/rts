@@ -3,7 +3,9 @@ extends StaticBody2D
 var mouseEntered = false
 @onready var select = get_node("SelectedBox")
 @onready var attributeComponent = $AttributeComponent
+@export var rect: Rect2
 var Selected = false
+@onready var sprite = $Sprite2D
 func _ready() -> void:
 	attributeComponent.Destroyed.connect(_on_destroy)
 	pass
@@ -29,3 +31,12 @@ func _on_area_2d_mouse_exited() -> void:
 
 func _on_destroy():
 	queue_free()
+	
+func get_global_rect() -> Rect2:
+	return Rect2(
+		Vector2(global_position.x - rect.size.x/2, global_position.y - rect.size.y/2),
+		rect.size
+	)
+
+func set_on_place():
+	sprite.modulate.a = 255

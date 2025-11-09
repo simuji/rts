@@ -19,12 +19,13 @@ var end = Vector2()
 var endV = Vector2()
 var isDragging = false 
 @onready var box = get_node("../UI/Panel")
-
+@onready var mouseNode = $mouse
 signal area_selected
 signal start_move_selection
 
 func _ready() -> void:
 	connect("area_selected", Callable(get_parent(), "_on_area_selected"))
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _process(delta: float) -> void:
 	var inputX = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
@@ -61,6 +62,7 @@ func _process(delta: float) -> void:
 		end = mousePosGlobal
 		endV = mousePos
 		draw_area()
+		
 func _input(event): 
 	if abs(zoomPos.x - get_global_mouse_position().x) > ZOOM_MARGIN:
 		zoomFactor = 1.0

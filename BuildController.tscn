@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ueup3wmqpokc"]
+
+[ext_resource type="PackedScene" uid="uid://5rtpx8b2yks7" path="res://UI/Grid.tscn" id="1_d1wrm"]
+[ext_resource type="Script" uid="uid://c4dl7l2gpp4wr" path="res://build_controller.gd" id="1_jwsr2"]
+
+[node name="buildController" type="Node2D"]
+script = ExtResource("1_jwsr2")
+
+[node name="Grid" parent="." instance=ExtResource("1_d1wrm")]
+visible = false
+mouse_behavior_recursive = 2
+columns = 32
+width = 32
+height = 32
+cellWidth = 32
+cellHeight = 32
+
+[connection signal="gui_input" from="Grid" to="." method="_on_grid_gui_input"]

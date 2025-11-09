@@ -14,25 +14,25 @@ radius = 26.0
 height = 52.0
 
 [node name="building" type="StaticBody2D"]
+modulate = Color(1, 1, 1, 0.39215687)
 y_sort_enabled = true
 collision_layer = 2
 input_pickable = true
 script = ExtResource("1_5uxbu")
+rect = Rect2(0, 0, 64, 64)
 
 [node name="SelectedBox" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -43)
+position = Vector2(0, -10)
 scale = Vector2(2.1875, 2.4492185)
 texture = ExtResource("2_jaabe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -32)
+modulate = Color(1, 1, 1, 0.5647059)
 texture = ExtResource("1_tt30a")
 region_enabled = true
 region_rect = Rect2(224, 128, 64, 64)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(0, -27)
 radius = 30.0
 affect_navigation_mesh = true
 carve_navigation_mesh = true
@@ -41,21 +41,20 @@ carve_navigation_mesh = true
 collision_layer = 2147483648
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea2D"]
-position = Vector2(-1, -27)
 shape = SubResource("CircleShape2D_vgp2u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, 10)
 scale = Vector2(1, 0.5)
 shape = SubResource("CapsuleShape2D_vgp2u")
 
 [node name="AttributeComponent" parent="." instance=ExtResource("4_gnu22")]
 
 [node name="HealthPointProgressBar" parent="." instance=ExtResource("4_s5ctk")]
-offset_left = -25.0
-offset_top = -65.0
-offset_right = 26.0
-offset_bottom = -61.0
+offset_left = -24.0
+offset_top = -38.0
+offset_right = 27.0
+offset_bottom = -34.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

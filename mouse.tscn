@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://0by5ktincg74"]
+
+[ext_resource type="Texture2D" uid="uid://csca7iywkwcg1" path="res://building/UI.png" id="1_8f81w"]
+[ext_resource type="Script" uid="uid://ct8v8o4k0onea" path="res://mouse.gd" id="1_tewyd"]
+
+[node name="mouse" type="Node2D"]
+position = Vector2(0.04, 0)
+script = ExtResource("1_tewyd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.96, 1)
+texture = ExtResource("1_8f81w")
+offset = Vector2(4, 14)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

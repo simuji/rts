@@ -4,6 +4,9 @@ extends Node
 var Wood = 0
 var Stone = 0
 var curMouseTarget: Object = null
+
+var m_buildController = null 
+
 func  spawnUnit(pos, spawntpye:String):
 	var path = get_tree().get_root().get_node("main_world/UI")
 	var hasSpawn = false
@@ -23,3 +26,10 @@ func setMouseTarget(mouseTarget: Object):
 	
 func getMouseTarget() -> Object:
 	return curMouseTarget
+
+
+func setBuildController(buildController):
+	m_buildController = buildController
+
+func getBuildController():
+	return m_buildController
