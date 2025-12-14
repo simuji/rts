@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UnitSpawnData" load_steps=3 format=3 uid="uid://cw7mhbiumtjim"]
+
+[ext_resource type="Script" uid="uid://cfmgof7aetyew" path="res://unit/UnitSpawnData.gd" id="1_cqy84"]
+[ext_resource type="Texture2D" uid="uid://guaovqfdyf3j" path="res://unit/soilderIcon.png" id="2_aqrs1"]
+
+[resource]
+script = ExtResource("1_cqy84")
+unitType = 1
+unitIcon = ExtResource("2_aqrs1")
+populationCost = 5

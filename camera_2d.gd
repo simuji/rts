@@ -26,13 +26,17 @@ signal start_move_selection
 func _ready() -> void:
 	connect("area_selected", Callable(get_parent(), "_on_area_selected"))
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	position.x = 0
+	position.y = 0
 
 func _process(delta: float) -> void:
 	var inputX = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	var inputY = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	
-	position.x = lerp(position.x, position.x + inputX * SPEED * zoom.x, SPEED * delta)
-	position.y = lerp(position.y, position.y + inputY * SPEED * zoom.x, SPEED * delta)
+	var p_x = lerp(position.x, position.x + inputX * SPEED * zoom.x, SPEED * delta)
+	var p_y = lerp(position.y, position.y + inputY * SPEED * zoom.x, SPEED * delta)
+	position.x = clamp(p_x, 0, 10000000)
+	position.y = clamp(p_y, 0, 10000000)
 	
 	zoom.x = lerp(zoom.x, zoom.x * zoomFactor , ZOOM_SPEED * delta)
 	zoom.y = lerp(zoom.y, zoom.y * zoomFactor , ZOOM_SPEED * delta)

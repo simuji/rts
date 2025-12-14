@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceData" load_steps=2 format=3 uid="uid://ct0r5elr2xwg0"]
+
+[ext_resource type="Script" uid="uid://c8nnrkes7uo6j" path="res://WorldResource/ResourceData.gd" id="1_3w6hu"]
+
+[resource]
+script = ExtResource("1_3w6hu")
+reward = Dictionary[int, int]({
+1: 5
+})

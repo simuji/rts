@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UnitSpawnData" load_steps=3 format=3 uid="uid://bqxt86q3ht353"]
+
+[ext_resource type="Script" uid="uid://cfmgof7aetyew" path="res://unit/UnitSpawnData.gd" id="1_m3pd5"]
+[ext_resource type="Texture2D" uid="uid://dtv7f2qxomx6e" path="res://unit/archerIcon.png" id="2_ib1px"]
+
+[resource]
+script = ExtResource("1_m3pd5")
+unitIcon = ExtResource("2_ib1px")

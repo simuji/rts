@@ -55,6 +55,7 @@ offset_left = -13.0
 offset_top = -35.0
 offset_right = 13.0
 offset_bottom = -33.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ClickArea2D" type="Area2D" parent="."]
 collision_layer = 2147483648

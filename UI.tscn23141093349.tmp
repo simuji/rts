@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://y3ljqkp06tro"]
+
+[ext_resource type="Script" uid="uid://522duv4jh66s" path="res://ui.gd" id="1_b3bc3"]
+[ext_resource type="PackedScene" uid="uid://0by5ktincg74" path="res://mouse.tscn" id="2_3b2b5"]
+[ext_resource type="Texture2D" uid="uid://c52v5x40ury3q" path="res://UI/biankuang.png" id="3_g6l6n"]
+[ext_resource type="Texture2D" uid="uid://bu4prdv3mkaue" path="res://UI/smallMap.png" id="4_qui0h"]
+[ext_resource type="Script" uid="uid://dw3nn18jho3pw" path="res://sub_viewport.gd" id="5_vrfts"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3bc3"]
+bg_color = Color(0, 0, 0, 0.43529412)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(15.441002, 15.441002, 15.441002, 1)
+border_blend = true
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_b3bc3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 865.0
+offset_top = 508.0
+offset_right = 1069.0
+offset_bottom = 612.0
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "camp"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "house
+"
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 17.0
+offset_top = 13.0
+offset_right = 325.0
+offset_bottom = 58.0
+max_text_lines = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemList"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ItemList/HBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 3
+
+[node name="Label2" type="Label" parent="ItemList/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+theme_override_styles/panel = SubResource("StyleBoxFlat_b3bc3")
+
+[node name="mouse" parent="." instance=ExtResource("2_3b2b5")]
+position = Vector2(104, 98)
+
+[node name="Biankuang" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("3_g6l6n")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.016493056
+anchor_top = 0.64660496
+anchor_right = 0.28211805
+anchor_bottom = 0.97376543
+offset_left = 41.0
+offset_top = 28.0
+offset_right = -25.0
+offset_bottom = -44.0
+grow_vertical = 0
+stretch = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer"]
+position = Vector2(119, 73)
+texture = ExtResource("4_qui0h")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(240, 140)
+render_target_update_mode = 4
+script = ExtResource("5_vrfts")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(100, 100)
+
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

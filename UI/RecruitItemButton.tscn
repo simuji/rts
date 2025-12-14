@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4kvvvaubcq3c"]
+
+[ext_resource type="Texture2D" uid="uid://b1vdnahaw1gut" path="res://UI/BuildMenuItem.png" id="1_4hwsp"]
+[ext_resource type="Texture2D" uid="uid://d2xa8hyci53s3" path="res://UI/BuildMenuItemPressed.png" id="2_vpsps"]
+[ext_resource type="Script" uid="uid://cnoqade54vkug" path="res://UI/recruit_item_button.gd" id="3_4hwsp"]
+[ext_resource type="Texture2D" uid="uid://ko16y2pf60y7" path="res://UI/campIcon.png" id="4_mapcb"]
+[ext_resource type="PackedScene" uid="uid://ceuk2qp8spjjq" path="res://UI/UnitDescriptionUI.tscn" id="5_5iwbk"]
+
+[node name="RecruitButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_4hwsp")
+texture_pressed = ExtResource("2_vpsps")
+script = ExtResource("3_4hwsp")
+
+[node name="textureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 62.0
+mouse_filter = 2
+texture = ExtResource("4_mapcb")
+
+[node name="UnitDescriptionUI" parent="." instance=ExtResource("5_5iwbk")]
+visible = false
+z_index = 100
+layout_mode = 0
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -2,6 +2,8 @@ extends PanelContainer
 
 @export var full = false
 
+func _ready() -> void:
+	pass
 func change_color(color: Color):
 	var styleBox := get_theme_stylebox("panel").duplicate()
 	styleBox.bg_color = color

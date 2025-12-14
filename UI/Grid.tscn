@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://yb3smmoofg72" path="res://UI/grid.gd" id="1_7ue6a"]
 
 [node name="Grid" type="GridContainer"]
+visibility_layer = 2
 offset_right = 500.0
 offset_bottom = 500.0
 size_flags_horizontal = 4

@@ -1,6 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwnyh85ml00tq"]
+[gd_scene load_steps=26 format=3 uid="uid://cwnyh85ml00tq"]
 
-[ext_resource type="Texture2D" uid="uid://kg0l0ftx7fh5" path="res://rts.png" id="1_itk02"]
+[ext_resource type="Texture2D" uid="uid://ch2da43h7jnw4" path="res://rts.png" id="1_itk02"]
 [ext_resource type="Script" uid="uid://bcugrfygndlh8" path="res://main_world.gd" id="1_whfra"]
 [ext_resource type="PackedScene" uid="uid://y3ljqkp06tro" path="res://UI.tscn" id="5_whfra"]
 [ext_resource type="Script" uid="uid://6wqbb7xx0cmr" path="res://camera_2d.gd" id="6_uue8y"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cou44g84j3e6s" path="res://building/house.tscn" id="7_aac4l"]
 [ext_resource type="PackedScene" uid="uid://bl4vvey1c2tts" path="res://WorldResource/stone.tscn" id="8_7ktct"]
 [ext_resource type="PackedScene" uid="uid://ueup3wmqpokc" path="res://BuildController.tscn" id="8_uks48"]
+[ext_resource type="PackedScene" uid="uid://xwqdsa1x8pl7" path="res://building/mainBase.tscn" id="9_uks48"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_72mcj"]
 vertices = PackedVector2Array(705.0703, 24.953125, 707.9219, 426.97656, 26.898438, 426.0078, 23.09375, 22.039063)
@@ -249,14 +250,13 @@ script = ExtResource("1_whfra")
 [node name="UI" parent="." instance=ExtResource("5_whfra")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+texture_filter = 1
+position = Vector2(-1000, 0)
 limit_left = 0
 limit_top = 0
 script = ExtResource("6_uue8y")
 
 [node name="Units" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Node2D" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="buildings" type="Node2D" parent="." groups=["buildings"]]
@@ -273,12 +273,47 @@ layer_0/tile_data = PackedInt32Array(65537, 196608, 3, 0, 131072, 2, 65536, 1310
 
 [node name="tree" parent="." instance=ExtResource("7_7ktct")]
 position = Vector2(359, 288)
+isPreBuild = true
+
+[node name="Sprite2D" parent="tree" index="0"]
+position = Vector2(0, -32)
+
+[node name="NavigationObstacle2D" parent="tree" index="1"]
+position = Vector2(0, -6)
+
+[node name="CollisionShape2D" parent="tree" index="3"]
+position = Vector2(0, -6)
 
 [node name="stone" parent="." instance=ExtResource("8_7ktct")]
 position = Vector2(176, 299)
+isPreBuild = true
+
+[node name="house2" parent="." instance=ExtResource("7_aac4l")]
+modulate = Color(1.353256, 1.353256, 1.353256, 0.39215687)
+position = Vector2(603, 84)
+rect = Rect2(0, 0, 96, 96)
+isPreBuild = true
+
+[node name="AttributeComponent" parent="house2" index="5"]
+farction = 1
 
 [node name="house" parent="." instance=ExtResource("7_aac4l")]
+modulate = Color(1.353256, 1.353256, 1.353256, 0.39215687)
 position = Vector2(600, 226)
-rect = Rect2(0, 0, 0, 0)
+rect = Rect2(0, 0, 32, 64)
+isPreBuild = true
+
+[node name="AttributeComponent" parent="house" index="5"]
+farction = 2
+
+[node name="building" parent="." instance=ExtResource("9_uks48")]
+position = Vector2(279, 124)
+rect = Rect2(0, 0, 96, 96)
+isPreBuild = true
 
 [node name="buildController" parent="." instance=ExtResource("8_uks48")]
+
+[editable path="tree"]
+[editable path="stone"]
+[editable path="house2"]
+[editable path="house"]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://de7rutnjjap6b"]
+
+[ext_resource type="Texture2D" uid="uid://dvf7h4lcbhw1k" path="res://UI/resourceUI.png" id="1_1xgq5"]
+[ext_resource type="Script" uid="uid://cxd46yl8ndofc" path="res://UI/resource_ui.gd" id="1_x6pex"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_x6pex")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.997796, 1)
+texture = ExtResource("1_1xgq5")
+
+[node name="GridContainer" type="GridContainer" parent="TextureRect"]
+layout_mode = 1
+offset_left = 26.0
+offset_top = 25.0
+offset_right = 239.0
+offset_bottom = 116.0
+theme_override_constants/h_separation = 43
+theme_override_constants/v_separation = 43
+columns = 5
+
+[node name="MoneyText" type="RichTextLabel" parent="TextureRect"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 121.0
+offset_bottom = 204.0
+theme_override_font_sizes/normal_font_size = 20
+text = "0
+"
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TextureRect"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 0
+offset_left = 153.33795
+offset_top = 183.0
+offset_right = 193.33795
+offset_bottom = 203.0
+theme_override_colors/default_color = Color(0.9596879, 0.5978165, 0.2702762, 1)
+text = "人口"
+scroll_active = false
+autowrap_trim_flags = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = 187.41306
+offset_top = 179.0
+offset_right = 277.4131
+offset_bottom = 207.0
+theme_override_constants/separation = 0
+
+[node name="PopulationText" type="RichTextLabel" parent="TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "0
+"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1

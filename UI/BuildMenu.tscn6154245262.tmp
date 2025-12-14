@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7iwxbu82rvdh"]
+
+[ext_resource type="Texture2D" uid="uid://cew80py15i8p8" path="res://UI/BuildMenu.png" id="1_mo5q8"]
+[ext_resource type="Texture2D" uid="uid://cikf7ugkjs72c" path="res://UI/buildMenuButton.png" id="2_435ih"]
+[ext_resource type="Script" uid="uid://n0houdt5mgq1" path="res://UI/build_menu.gd" id="2_i58mc"]
+[ext_resource type="Texture2D" uid="uid://c8wkh86qhjiwn" path="res://UI/buildMenuButtonPressed2.png" id="3_435ih"]
+
+[node name="BuildMenu" type="TextureRect"]
+offset_right = 573.0
+offset_bottom = 234.0
+texture = ExtResource("1_mo5q8")
+script = ExtResource("2_i58mc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 19.0
+offset_right = 96.0
+offset_bottom = 220.0
+
+[node name="BuildButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+tooltip_text = "建造
+"
+texture_normal = ExtResource("2_435ih")
+texture_pressed = ExtResource("3_435ih")
+
+[node name="Label" type="Label" parent="VBoxContainer/BuildButton"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "建造"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProductButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_435ih")
+texture_pressed = ExtResource("3_435ih")
+
+[node name="Label" type="Label" parent="VBoxContainer/ProductButton"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "生产"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TecnologyButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_435ih")
+texture_pressed = ExtResource("3_435ih")
+
+[node name="Label" type="Label" parent="VBoxContainer/TecnologyButton"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "科技"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RecruitButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_435ih")
+texture_pressed = ExtResource("3_435ih")
+
+[node name="Label" type="Label" parent="VBoxContainer/RecruitButton"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "招募
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DemolishButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_435ih")
+texture_pressed = ExtResource("3_435ih")
+
+[node name="Label" type="Label" parent="VBoxContainer/DemolishButton"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 54.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "拆除"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buildItemContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 20.0
+offset_right = 623.0
+offset_bottom = 226.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 6
+
+[connection signal="pressed" from="VBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ProductButton" to="." method="_on_product_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RecruitButton" to="." method="_on_recruit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DemolishButton" to="." method="_on_demolish_button_pressed"]

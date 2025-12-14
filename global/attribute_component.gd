@@ -5,10 +5,9 @@ extends Node
 #建造花费
 @export var cost: Dictionary = {}
 @export var attack: float = 0.0
-#掉落物品
-@export var dropItem: Dictionary = {}
+
 #阵营
-@export var farction: String = ""
+@export var farction: GameDataConstants.FarctionEnum = GameDataConstants.FarctionEnum.NEUTRAL
 
 signal Destroyed()
 signal HealthChanged(oldHealthPoint: float, newHealthPoint: float)
@@ -17,6 +16,7 @@ func _init() -> void:
 	healthPoint = maxHealthPoint
 
 func _ready() -> void:
+	print("connect damage signal")
 	DamageController.hit.connect(_on_take_damage)
 
 func _on_take_damage(damageInfo: DamageController.DamageInfo):
@@ -29,5 +29,6 @@ func _on_take_damage(damageInfo: DamageController.DamageInfo):
 	if healthPoint != oldhealthPoint:
 		HealthChanged.emit(oldhealthPoint, healthPoint)
 	if healthPoint <= 0:
+		print("emit destroy")
 		Destroyed.emit()
 	

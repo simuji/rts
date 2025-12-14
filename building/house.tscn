@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cou44g84j3e6s"]
+[gd_scene load_steps=5 format=3 uid="uid://cou44g84j3e6s"]
 
 [ext_resource type="Script" uid="uid://dqxbdpfpdlcxn" path="res://building/house.gd" id="1_5uxbu"]
 [ext_resource type="PackedScene" uid="uid://druesh2rh5xrk" path="res://building/building.tscn" id="1_jaabe"]
+[ext_resource type="Script" uid="uid://4lp3w6jdgti" path="res://building/BuildingSpawnData.gd" id="3_jaabe"]
+
+[sub_resource type="Resource" id="Resource_camqb"]
+script = ExtResource("3_jaabe")
+buildCost = Dictionary[int, int]({
+0: 5,
+1: 10
+})
+farction = 2
+metadata/_custom_type_script = "uid://4lp3w6jdgti"
 
 [node name="house" instance=ExtResource("1_jaabe")]
 script = ExtResource("1_5uxbu")
+buildingData = SubResource("Resource_camqb")
+
+[node name="Timer" type="Timer" parent="." index="7"]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingSpawnData" load_steps=3 format=3 uid="uid://bjpl3u2clcn71"]
+
+[ext_resource type="Texture2D" uid="uid://ko16y2pf60y7" path="res://UI/campIcon.png" id="1_cjvif"]
+[ext_resource type="Script" uid="uid://4lp3w6jdgti" path="res://building/BuildingSpawnData.gd" id="2_a0wis"]
+
+[resource]
+script = ExtResource("2_a0wis")
+buildType = 1
+buildIcon = ExtResource("1_cjvif")
+buildCost = Dictionary[int, int]({
+0: 2,
+1: 3
+})

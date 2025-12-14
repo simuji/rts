@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd0rrdb2x3idx"]
+
+[ext_resource type="Texture2D" uid="uid://csci4b0q7buji" path="res://UI/descreptionUI.png" id="1_swbja"]
+[ext_resource type="PackedScene" uid="uid://hu5e6mkbveda" path="res://UI/ResourceItem.tscn" id="2_72xde"]
+
+[node name="TecnologyDescriptionUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_swbja")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 15.0
+offset_right = 188.0
+offset_bottom = 49.0
+theme_override_font_sizes/normal_font_size = 14
+text = "劳工"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 114.0
+offset_right = 256.0
+offset_bottom = 180.0
+theme_override_font_sizes/normal_font_size = 10
+text = "测试描述测测试描述测试描述测试描述测试描述测测试描述测试描述测试描述测试描述测测试描述测试描述测试描述"
+fit_content = true
+vertical_alignment = 1
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 101.0
+offset_right = 85.0
+offset_bottom = 136.0
+theme_override_font_sizes/normal_font_size = 12
+text = "描述
+"
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 45.0
+offset_right = 284.0
+offset_bottom = 79.0
+theme_override_font_sizes/normal_font_size = 12
+text = "招募所需材料
+"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 77.0
+offset_right = 482.0
+offset_bottom = 132.0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/separation = 44
+
+[node name="Control" parent="HBoxContainer" instance=ExtResource("2_72xde")]
+layout_mode = 2
+
+[node name="Control2" parent="HBoxContainer" instance=ExtResource("2_72xde")]
+layout_mode = 2
+
+[node name="Control3" parent="HBoxContainer" instance=ExtResource("2_72xde")]
+layout_mode = 2

@@ -12,20 +12,31 @@ var objectCells
 var isValid = false
 var isBuilding = false
 
+var buildData: BuildingSpawnData
+
 func _ready() -> void:
 	gridSize = Vector2(grid.cellWidth, grid.cellHeight)
+	print("setbuild controller")
+	call_deferred("setController")
 	Game.setBuildController(self)
-
 func _exit_tree() -> void:
 	Game.setBuildController(null)
 
-func build(buildType: String):
+func build(data: BuildingSpawnData):
+	if !data:
+		return
+	buildData = data
 	if not object:
 		var newBuilding = null
-		match buildType:
-			"camp":
+		print("startbuild-111",str(buildData.buildType))
+		match buildData.buildType:
+			GameDataConstants.BuildingTypeEnum.CAMP:
+				if !DataManager.itemDataManager.isHasEnoughItem(buildData.buildCost):
+					return
 				newBuilding = camp.instantiate()
-			"house":
+			GameDataConstants.BuildingTypeEnum.HOUSE:
+				if !DataManager.itemDataManager.isHasEnoughItem(buildData.buildCost):
+					return
 				newBuilding = house.instantiate()
 		if newBuilding == null:
 			return
@@ -37,15 +48,24 @@ func build(buildType: String):
 	
 func _input(event: InputEvent):
 	if  Input.is_action_just_pressed("Left_Click") and isValid and isBuilding:
-		_place_placement(objectCells)
 		isBuilding = false
 		grid.visible = false
-
+		_place_placement(objectCells)
+		DataManager.itemDataManager.consume_resource(buildData.buildCost)
+	if Input.is_action_just_pressed("Right_Click") and isBuilding:
+		object.queue_free()
+		isBuilding = false
+		grid.visible = false
+		object = null
+		isValid = null
 func _process(delta: float) -> void:
 	if not object: return
+	for building in Game.buildingPlaced:
+		if !building.bPlaced:
+			do_placement(building)
+			building.bPlaced = true
 	var mousePosition = get_global_mouse_position()
 	var newTargetCell = _get_target_cell(mousePosition)
-	
 	if newTargetCell and newTargetCell != targetCell:
 		targetCell = newTargetCell
 		object.global_position = targetCell.global_position + object.rect.size/2
@@ -58,14 +78,13 @@ func _get_target_cell(targetPosition):
 	for child:Control in grid.get_children():
 		if child.get_global_rect().has_point(targetPosition):
 			return child
-
+	
 func _reset_highlight():
 	for child:Control in grid.get_children():
 		child.change_color(Color(0.5, 0.5, 0.5, 0.5))
 
 func _get_object_cells() -> Array:
 	var cells: Array = []
-	
 	for child:Control in grid.get_children():
 		if child.get_global_rect().intersects(object.get_global_rect()):
 			cells.append(child)
@@ -91,8 +110,26 @@ func _place_placement(objectCells):
 	object.set_on_place()
 	object = null
 	isValid = null
-	
 	for cell in objectCells:
 		cell.full = true
-	
 	_reset_highlight()
+
+func do_placement(obj):
+	var cells: Array = []
+	for child:Control in grid.get_children():
+		if child.get_global_rect().intersects(obj.get_global_rect()):
+			cells.append(child)
+	obj.set_on_place()
+	obj = null
+	for cell in cells:
+		cell.full = true
+
+func adjust_position(obj):
+	var targetCell = _get_target_cell(obj.global_position)
+	print(obj.global_position)
+	if targetCell == null:
+		return
+	obj.global_position = targetCell.global_position + object.rect.size/2
+
+func setController():
+	Game.setBuildController(self)

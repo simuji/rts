@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var unitData: UnitSpawnData
 @export var selected = false
 @onready var selectedBox = get_node("SelectedBox")
 @onready var sprite = get_node("body")

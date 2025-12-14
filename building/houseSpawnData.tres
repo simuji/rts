@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BuildingSpawnData" load_steps=3 format=3 uid="uid://cnlke3yhedpjm"]
+
+[ext_resource type="Texture2D" uid="uid://cd8d0wh485l4h" path="res://UI/houseIcon.png" id="1_171oa"]
+[ext_resource type="Script" uid="uid://4lp3w6jdgti" path="res://building/BuildingSpawnData.gd" id="1_t2yqj"]
+
+[resource]
+script = ExtResource("1_t2yqj")
+buildIcon = ExtResource("1_171oa")
+buildCost = Dictionary[int, int]({
+0: 3,
+1: 2
+})
+populationIncreaseSpeed = 1
+maxPopulationIncreased = 10
+farction = 2
