@@ -1,0 +1,45 @@
+[gd_resource type="ImageTexture" load_steps=2 format=3 uid="uid://ckjryw1elx1gj"]
+
+[sub_resource type="GDScript" id="GDScript_fwrgr"]
+script/source = "func create_rounded_rect2(color: Color, size: Vector2i, radius: int) -> ImageTexture:
+	var img_width = size.x
+	var img_height = size.y
+	var img := Image.create(img_width, img_height, false, Image.FORMAT_RGBA8)
+	img.fill(Color.TRANSPARENT)
+	
+	for y in img_height:
+		for x in img_width:
+			if is_in_rounded_rect(x, y, img_width, img_height, radius):
+				img.set_pixel(x, y, color)
+ 
+	return ImageTexture.create_from_image(img)
+ 
+func is_in_rounded_rect(x: int, y: int, w: int, h: int, r: int) -> bool:
+	# 中间矩形区域
+	if x >= r and x <= w - r and y >= r and y <= h - r:
+		return true
+	
+	# 四角圆形区域检测
+	var positions = [
+		Vector2(r, r),        # 左上圆心
+		Vector2(w - r, r),    # 右上圆心
+		Vector2(r, h - r),    # 左下圆心
+		Vector2(w - r, h - r) # 右下圆心
+	]
+	
+	# 检查四角区域
+	if x < r and y < r:       # 左上角
+		return Vector2(x - r, y - r).length() <= r
+	if x > w - r and y < r:  # 右上角
+		return Vector2(x - (w - r), y - r).length() <= r
+	if x < r and y > h - r:  # 左下角
+		return Vector2(x - r, y - (h - r)).length() <= r
+	if x > w - r and y > h - r: # 右下角
+		return Vector2(x - (w - r), y - (h - r)).length() <= r
+	
+	# 边缘直线区域
+	return true
+"
+
+[resource]
+script = SubResource("GDScript_fwrgr")

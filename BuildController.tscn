@@ -1,18 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://ueup3wmqpokc"]
+[gd_scene load_steps=4 format=3 uid="uid://ueup3wmqpokc"]
 
-[ext_resource type="PackedScene" uid="uid://5rtpx8b2yks7" path="res://UI/Grid.tscn" id="1_d1wrm"]
 [ext_resource type="Script" uid="uid://c4dl7l2gpp4wr" path="res://build_controller.gd" id="1_jwsr2"]
+[ext_resource type="PackedScene" uid="uid://jdgor2f63qqt" path="res://UI/GridCell.tscn" id="4_676sb"]
+[ext_resource type="Script" uid="uid://chbvcyikt5nro" path="res://grid.gd" id="4_e4ho1"]
 
 [node name="buildController" type="Node2D"]
 script = ExtResource("1_jwsr2")
 
-[node name="Grid" parent="." instance=ExtResource("1_d1wrm")]
+[node name="grid" type="Node2D" parent="."]
 visible = false
-mouse_behavior_recursive = 2
-columns = 32
-width = 32
-height = 32
+script = ExtResource("4_e4ho1")
 cellWidth = 32
 cellHeight = 32
 
-[connection signal="gui_input" from="Grid" to="." method="_on_grid_gui_input"]
+[node name="PanelContainer3" parent="grid" instance=ExtResource("4_676sb")]
+offset_left = 64.0
+offset_right = 96.0
+
+[node name="PanelContainer2" parent="grid" instance=ExtResource("4_676sb")]
+
+[node name="PanelContainer" parent="grid" instance=ExtResource("4_676sb")]
+offset_left = 32.0
+offset_right = 64.0

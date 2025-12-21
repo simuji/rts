@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-@onready var label = $ItemList/HBoxContainer/Label2
-@onready var label2 = $ItemList/HBoxContainer/Label
 var technologyUIResource = preload("res://UI/TecnologyUI.tscn")
 var technologyUI
 # Called when the node enters the scene tree for the first time.

@@ -1,5 +1,5 @@
 @tool
-extends GridContainer
+extends Node2D
 var tilemap : TileMapLayer
 
 @export var width := 5:
@@ -33,7 +33,6 @@ func _ready() -> void:
 	visitTileMap()
 
 func _create_grid():
-	columns = width
 	for i in width * height:
 		var gridCellNode = GridCell.instantiate()
 		gridCellNode.custom_minimum_size = Vector2(cellWidth, cellHeight)
@@ -59,4 +58,7 @@ func visitTileMap():
 		if data.has_custom_data("canUse") and data.get_custom_data("canUse"):
 			var gridCellNode = GridCell.instantiate()
 			gridCellNode.custom_minimum_size = Vector2(cellWidth, cellHeight)
+			gridCellNode.position.x = vector.x * cellWidth
+			gridCellNode.position.y = vector.y * cellHeight
 			add_child(gridCellNode.duplicate())
+			print(gridCellNode.position)

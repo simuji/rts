@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var grid = $Grid 
+@onready var grid = $grid
 
 const camp = preload("res://building/camp.tscn")
 const house = preload("res://building/house.tscn")

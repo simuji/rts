@@ -1,5 +1,5 @@
 @tool
-extends GridContainer
+extends PanelContainer
 var tilemap : TileMapLayer
 
 @export var width := 5:
@@ -33,7 +33,6 @@ func _ready() -> void:
 	visitTileMap()
 
 func _create_grid():
-	columns = width
 	for i in width * height:
 		var gridCellNode = GridCell.instantiate()
 		gridCellNode.custom_minimum_size = Vector2(cellWidth, cellHeight)

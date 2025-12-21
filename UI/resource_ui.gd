@@ -2,7 +2,6 @@ extends Control
 
 var resourceItemUI = preload("res://UI/ResourceItem.tscn")
 @onready var populationText = $TextureRect/HBoxContainer/PopulationText
-@onready var maxPopulationText = $TextureRect/HBoxContainer/MaxPopulationText
 @onready var grid : GridContainer = $TextureRect/GridContainer
 @onready var moneyText = $TextureRect/MoneyText
 func _ready() -> void:
