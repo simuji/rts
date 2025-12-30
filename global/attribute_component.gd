@@ -11,7 +11,7 @@ extends Node
 
 signal Destroyed()
 signal HealthChanged(oldHealthPoint: float, newHealthPoint: float)
-
+signal Attcked(oldHealthPoint: float, newHealthPoint: float)
 func _init() -> void:
 	healthPoint = maxHealthPoint
 
@@ -20,7 +20,7 @@ func _ready() -> void:
 	DamageController.hit.connect(_on_take_damage)
 
 func _on_take_damage(damageInfo: DamageController.DamageInfo):
-	print("take damage", get_parent().name)
+	#print("take damage", get_parent().name)
 	if damageInfo.getTarget() != self.get_parent():
 		return
 	var oldhealthPoint = healthPoint
@@ -28,6 +28,7 @@ func _on_take_damage(damageInfo: DamageController.DamageInfo):
 	print("old health is", oldhealthPoint, "new health is", healthPoint)
 	if healthPoint != oldhealthPoint:
 		HealthChanged.emit(oldhealthPoint, healthPoint)
+		Attcked.emit(oldhealthPoint, healthPoint)
 	if healthPoint <= 0:
 		print("emit destroy")
 		Destroyed.emit()

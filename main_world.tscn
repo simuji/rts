@@ -119,9 +119,6 @@ position = Vector2(0, -32)
 [node name="NavigationObstacle2D" parent="tree" index="1"]
 position = Vector2(0, -6)
 
-[node name="CollisionShape2D" parent="tree" index="3"]
-position = Vector2(0, -6)
-
 [node name="stone" parent="." instance=ExtResource("8_7ktct")]
 position = Vector2(176, 299)
 isPreBuild = true
@@ -131,15 +128,10 @@ modulate = Color(1.353256, 1.353256, 1.353256, 0.39215687)
 position = Vector2(603, 84)
 isPreBuild = true
 
-[node name="NavigationObstacle2D" parent="house2" index="2"]
-radius = 30.0
-vertices = PackedVector2Array()
+[node name="SelectedBox" parent="house2" index="0"]
+visible = true
 
-[node name="CollisionShape2D" parent="house2" index="4"]
-position = Vector2(0, 10)
-scale = Vector2(1, 0.5)
-
-[node name="AttributeComponent" parent="house2" index="5"]
+[node name="AttributeComponent" parent="house2" index="4"]
 farction = 1
 
 [node name="house3" parent="." instance=ExtResource("7_aac4l")]
@@ -147,15 +139,10 @@ modulate = Color(1.353256, 1.353256, 1.353256, 0.39215687)
 position = Vector2(1254, 503)
 isPreBuild = true
 
-[node name="NavigationObstacle2D" parent="house3" index="2"]
-radius = 30.0
-vertices = PackedVector2Array()
+[node name="SelectedBox" parent="house3" index="0"]
+visible = true
 
-[node name="CollisionShape2D" parent="house3" index="4"]
-position = Vector2(0, 10)
-scale = Vector2(1, 0.5)
-
-[node name="AttributeComponent" parent="house3" index="5"]
+[node name="AttributeComponent" parent="house3" index="4"]
 farction = 2
 
 [node name="house" parent="." instance=ExtResource("7_aac4l")]
@@ -163,21 +150,19 @@ modulate = Color(1.353256, 1.353256, 1.353256, 0.39215687)
 position = Vector2(600, 226)
 isPreBuild = true
 
-[node name="NavigationObstacle2D" parent="house" index="2"]
-radius = 30.0
-vertices = PackedVector2Array()
+[node name="SelectedBox" parent="house" index="0"]
+visible = true
 
-[node name="CollisionShape2D" parent="house" index="4"]
-position = Vector2(0, 10)
-scale = Vector2(1, 0.5)
-
-[node name="AttributeComponent" parent="house" index="5"]
+[node name="AttributeComponent" parent="house" index="4"]
 farction = 2
 
 [node name="building" parent="." instance=ExtResource("9_uks48")]
 position = Vector2(279, 124)
 rect = Rect2(0, 0, 96, 96)
 isPreBuild = true
+
+[node name="AttributeComponent" parent="building" index="4"]
+farction = 2
 
 [node name="buildController" parent="." instance=ExtResource("8_uks48")]
 
@@ -186,3 +171,4 @@ isPreBuild = true
 [editable path="house2"]
 [editable path="house3"]
 [editable path="house"]
+[editable path="building"]

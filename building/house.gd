@@ -15,3 +15,5 @@ func _on_timer_timeout() -> void:
 	if buildingData.getFarction() == Game.currentFarctionEnum:
 		DataManager.setPopulation(DataManager.getPopulation() + \
 			populationIncreasedSpeed)
+func _to_string() -> String:
+	return "house"

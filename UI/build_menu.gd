@@ -57,7 +57,9 @@ func changeToProduceUI():
 	clearItemInGrid()
 	resetHighLightButton()
 	ProductButton.texture_normal = pressedButtonTexture
-
+func changeToDefaultUI():
+	clearItemInGrid()
+	resetHighLightButton()
 func clearItemInGrid():
 	for child in buidItemContainer.get_children():
 		child.queue_free()  # 延迟删除（推荐，避免即时删除导致的异常）

@@ -10,20 +10,36 @@ extends CharacterBody2D
 
 @onready var searchedObjectMap: Dictionary #保存现在在unit的搜寻范围内的物体
 @onready var attributeComponent = $AttributeComponent
-
+@onready var healthBar = $HealthPointProgressBar
+@onready var objectType: GameDataConstants.ObjectTypeEnum
 var currentTarget: Object #保存当前unit的target
 var currentTargetString: String
 var bTargetInArea:bool = false
 var DEFAULT_TARGET_DESIRE_DISTANCE = 15
 var mouseEntered = false
-var arrive = false #当前unit是否到达target
+var bArrive = false #当前unit是否到达target
 var follow_cursor = false
 var speed = 40
 
+enum UnitState {
+	IDLE,
+	WALK,
+	ATTACK,
+	MINE,
+	CHOP,
+	ATTACKED,
+	DYING
+}
+
+var currentUnitState: UnitState = UnitState.IDLE
+var oldUnitState: UnitState = UnitState.IDLE
+var fa
 func _ready() -> void:
 	set_selected(selected)
 	add_to_group("Units", true)
 	attributeComponent.Destroyed.connect(_on_destroy)
+	attributeComponent.Attcked.connect(_on_attacked)
+	objectType = GameDataConstants.ObjectTypeEnum.UNIT
 func set_selected(value:bool):
 	selectedBox.visible = value
 	selected = value
@@ -35,6 +51,7 @@ func  _input(event):
 	if event.is_action_pressed("Right_Click"):
 		follow_cursor = true
 		if selected:
+			changeUnitState(UnitState.WALK)
 			currentTarget = Game.getMouseTarget()
 			currentTargetString = currentTarget.to_string() if currentTarget != null else ""
 			var target_navigation_obstacle = null
@@ -42,14 +59,13 @@ func  _input(event):
 			if currentTarget != null:
 				target_navigation_obstacle = currentTarget.find_child("NavigationObstacle2D")
 			if target_navigation_obstacle != null:
-				target_desired_distance = target_navigation_obstacle.radius
 				print("get target navigation obstacle:", target_navigation_obstacle.radius)
 			else:
 				target_desired_distance = DEFAULT_TARGET_DESIRE_DISTANCE
 			navigation_agent.set_target_desired_distance(target_desired_distance + 10)
 			print("target_desired_distance is ", navigation_agent.target_desired_distance)
 			print("Current Target of this unit is" + currentTargetString)
-			arrive = false
+			bArrive = false
 	if event.is_action_released("Right_Click"):
 		follow_cursor = false 
 		
@@ -58,7 +74,6 @@ func _physics_process(delta: float) -> void:
 		if selected:
 			target = get_global_mouse_position()
 			navigation_agent.target_position = target
-	
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 	var direction = to_local(next_path_position).normalized()
 	velocity = direction * speed 
@@ -67,7 +82,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		sprite.flip_h = true
 	navigation_agent.set_velocity(velocity)
-	
+	#判断目标是不是在攻击范围内
+	if searchedObjectMap.find_key(currentTargetString):
+		bTargetInArea = true
+	else:
+		bTargetInArea = false
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity 
@@ -75,7 +94,8 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
-	arrive = true
+	bArrive = true
+	arrive()
 	print("arrive")
 	pass # Replace with function body.
 	
@@ -92,14 +112,27 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 		bTargetInArea = false
 
 func _on_destroy():
-	queue_free()
-
+	changeUnitState(UnitState.DYING)
+func _on_attacked(oldHealthPoint:float, newHealthPoint: float):
+	changeUnitState(UnitState.ATTACKED)
 
 func _on_click_area_2d_mouse_entered() -> void:
 	mouseEntered = true
 	Game.setMouseTarget(self)
-
-
+	
 func _on_click_area_2d_mouse_exited() -> void:
 	mouseEntered = false
 	Game.setMouseTarget(null)
+
+func changeUnitState(state: UnitState):
+	if(oldUnitState != currentUnitState):
+		oldUnitState = currentUnitState
+		currentUnitState = state
+		pass
+func arrive():
+	pass
+	
+func setfraction(farction: GameDataConstants.FarctionEnum):
+	attributeComponent.farction = farction
+	healthBar.setProgressBarColor(farction)
+	pass

@@ -9,6 +9,7 @@ var m_buildController = null
 var currentFarctionEnum : GameDataConstants.FarctionEnum = GameDataConstants.FarctionEnum.PLAYER1 
 #游戏中所有建筑列表
 var buildingList: Dictionary[int, BuildingSpawnData] = {}
+var buildingTypeList: Array[String]
 #当前可放置建筑
 var availableBuildingList: Dictionary[int, BuildingSpawnData] = {}
 #游戏中的个体
@@ -25,6 +26,7 @@ var buildingPlaced: Array[Object]
 #保存游戏中所有的招募单位
 #保存游戏地图中所有的资源
 var resourcePlaced: Array[Object]
+var focusBuilding: Object
 
 func _ready() -> void:
 	pass
@@ -32,6 +34,28 @@ func _ready() -> void:
 	#buildingList[1] = "camp"
 	#availableBuildingList[0] = "house"
 	#availableBuildingList[1] = "camp"
+	buildingTypeList = ["house", "camp"]
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Left_Click"):
+		var ui = Game.getBuildMenu()
+		var hovered_ui = get_viewport().gui_get_hovered_control()
+		if hovered_ui:
+			return
+		if !bTargetIsBuilding():
+			if getFocusBuilding():
+				getFocusBuilding().selectBuilding(false)
+			setFocusBuilding(null)
+			if ui:
+				ui.changeToDefaultUI()
+		else:
+			#切换到招募ui
+			if getFocusBuilding():
+				getFocusBuilding().selectBuilding(false)
+			DataManager.setavailableUnitSpawnList(curMouseTarget.unitList)
+			if ui:
+				ui.changeToRecruitUI()
+			setFocusBuilding(curMouseTarget)
+			getFocusBuilding().selectBuilding(true)
 func  spawnUnit(pos, spawntpye:String):
 	var path = get_tree().get_root().get_node("main_world/UI")
 	var hasSpawn = false
@@ -46,7 +70,7 @@ func  spawnUnit(pos, spawntpye:String):
 
 func setMouseTarget(mouseTarget: Object):
 	if mouseTarget != null:
-		print("set curMouseTarget:" + mouseTarget.name)
+		print("set curMouseTarget:" + mouseTarget.to_string())
 	curMouseTarget = mouseTarget
 	
 func getMouseTarget() -> Object:
@@ -82,4 +106,14 @@ func addBuildingPlaced(obj):
 	buildingPlaced.push_back(obj)
 func eraseBuildingPlaced(obj):
 	buildingPlaced.erase(obj)
-	
+
+func setFocusBuilding(building: Object):
+	focusBuilding = building
+
+func getFocusBuilding() -> Object:
+	return focusBuilding
+
+func bTargetIsBuilding() -> bool:
+	if curMouseTarget == null:
+		return false
+	return curMouseTarget.objectType == GameDataConstants.ObjectTypeEnum.BUILDING

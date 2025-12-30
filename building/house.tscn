@@ -17,8 +17,9 @@ metadata/_custom_type_script = "uid://4lp3w6jdgti"
 script = ExtResource("1_5uxbu")
 buildingData = SubResource("Resource_camqb")
 
-[node name="ClickArea2D" parent="." index="3"]
-visible = false
+[node name="NavigationObstacle2D" parent="." index="2"]
+radius = 0.0
+vertices = PackedVector2Array(16, 20, -17, 20, -25, 14, -18, 9, 17, 9, 24, 15)
 
 [node name="Timer" type="Timer" parent="." index="7"]
 wait_time = 5.0

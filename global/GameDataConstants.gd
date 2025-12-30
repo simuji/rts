@@ -1,5 +1,9 @@
 extends Node
-
+enum ObjectTypeEnum {
+	BUILDING,
+	RESOURCE,
+	UNIT
+}
 #building data enum
 enum BuildingTypeEnum {
 	HOUSE,

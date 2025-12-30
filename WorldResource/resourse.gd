@@ -11,13 +11,16 @@ var bPlaced: bool = false
 @onready var bar = $HealthPointProgressBar
 @onready var attributeComponent = $AttributeComponent
 @onready var curMousePosition 
+@onready var objectType: GameDataConstants.ObjectTypeEnum
 @export var rect: Rect2
 @export var isPreBuild: bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentTime = totalTime
 	bar.max_value = totalTime
 	attributeComponent.Destroyed.connect(_on_destroy)
+	objectType = GameDataConstants.ObjectTypeEnum.RESOURCE
 	if isPreBuild:
 		if (int(rect.size.x) / 32 % 2 == 0):
 			global_position.x = round(global_position.x / 32) * 32

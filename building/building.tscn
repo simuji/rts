@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://druesh2rh5xrk"]
+[gd_scene load_steps=7 format=3 uid="uid://druesh2rh5xrk"]
 
 [ext_resource type="Script" uid="uid://c46bro0oaro30" path="res://building/building.gd" id="1_5uxbu"]
 [ext_resource type="Texture2D" uid="uid://ch2da43h7jnw4" path="res://rts.png" id="1_tt30a"]
@@ -7,11 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xa7gpckbbqno" path="res://UI/HealthPointProgressBar.tscn" id="4_s5ctk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgp2u"]
-radius = 44.72136
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgp2u"]
-radius = 47.0
-height = 94.0
+radius = 29.017237
 
 [node name="building" type="StaticBody2D"]
 modulate = Color(1, 1, 1, 0.39215687)
@@ -22,6 +18,7 @@ script = ExtResource("1_5uxbu")
 rect = Rect2(0, 0, 64, 64)
 
 [node name="SelectedBox" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -10)
 scale = Vector2(2.1875, 2.4492185)
 texture = ExtResource("2_jaabe")
@@ -33,20 +30,15 @@ region_enabled = true
 region_rect = Rect2(224, 128, 64, 64)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 30.0
 affect_navigation_mesh = true
 carve_navigation_mesh = true
 
 [node name="ClickArea2D" type="Area2D" parent="."]
-collision_layer = 2147483648
+collision_layer = 2147483652
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea2D"]
 shape = SubResource("CircleShape2D_vgp2u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
-scale = Vector2(1, 0.5)
-shape = SubResource("CapsuleShape2D_vgp2u")
 
 [node name="AttributeComponent" parent="." instance=ExtResource("4_gnu22")]
 

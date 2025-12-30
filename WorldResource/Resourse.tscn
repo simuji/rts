@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm6c33wedu6f0"]
+[gd_scene load_steps=7 format=3 uid="uid://cm6c33wedu6f0"]
 
 [ext_resource type="PackedScene" uid="uid://c5fcymf487hu3" path="res://global/CusStaticBody.tscn" id="1_6jpe1"]
 [ext_resource type="Script" uid="uid://ccis86f6a2q2h" path="res://WorldResource/resourse.gd" id="2_6ghqv"]
@@ -7,10 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://xa7gpckbbqno" path="res://UI/HealthPointProgressBar.tscn" id="5_nic6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ghqv"]
-size = Vector2(14, 29)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_d2fke"]
-radius = 16.0
+size = Vector2(14, 34.5)
 
 [node name="Resource" instance=ExtResource("1_6jpe1")]
 y_sort_enabled = true
@@ -30,25 +27,22 @@ region_enabled = true
 region_rect = Rect2(192, 192, 96, 64)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." index="1"]
-radius = 12.0
 
-[node name="Click2D" type="Area2D" parent="." index="2"]
-collision_layer = 2147483648
+[node name="ClickArea" type="Area2D" parent="." index="2"]
+collision_layer = 2147483652
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Click2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea" index="0"]
 position = Vector2(-0.5, -17)
 shape = SubResource("RectangleShape2D_6ghqv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-shape = SubResource("CircleShape2D_d2fke")
+[node name="AttributeComponent" parent="." index="3" instance=ExtResource("4_d2fke")]
 
-[node name="AttributeComponent" parent="." index="4" instance=ExtResource("4_d2fke")]
-
-[node name="HealthPointProgressBar" parent="." index="5" instance=ExtResource("5_nic6n")]
+[node name="HealthPointProgressBar" parent="." index="4" instance=ExtResource("5_nic6n")]
 offset_left = -25.0
 offset_top = -65.0
 offset_right = 26.0
 offset_bottom = -61.0
 
-[connection signal="mouse_entered" from="Click2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Click2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="ClickArea" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="ClickArea" to="." method="_on_area_2d_mouse_exited"]

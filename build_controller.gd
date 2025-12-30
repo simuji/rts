@@ -42,6 +42,7 @@ func build(data: BuildingSpawnData):
 			return
 		add_child(newBuilding)
 		newBuilding.global_position = get_global_mouse_position()
+		newBuilding.setfraction(Game.currentFarctionEnum)
 		object = newBuilding
 		isBuilding = true
 		grid.visible = true

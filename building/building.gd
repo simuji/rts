@@ -2,17 +2,20 @@ extends StaticBody2D
 
 var mouseEntered = false
 @export var buildingData : BuildingSpawnData
-@onready var select = get_node("SelectedBox")
+@onready var selectBox = get_node("SelectedBox")
 @onready var attributeComponent = $AttributeComponent
 @export var rect: Rect2
 @export var isPreBuild: bool
 var Selected = false
 @onready var sprite = $Sprite2D
-
+@onready var attribute = $AttributeComponent
+@onready var healthbar = $HealthPointProgressBar
+@onready var objectType: GameDataConstants.ObjectTypeEnum
 var unitList: Array[int] = [0, 1, 2]
 var bPlaced: bool = false
 func _ready() -> void:
 	print("build init")
+	selectBox.visible = false
 	unitList = [0, 1 ,2]
 	attributeComponent.Destroyed.connect(_on_destroy)
 	if isPreBuild:
@@ -25,23 +28,10 @@ func _ready() -> void:
 		else:
 			global_position.y = round(global_position.y / 32) * 32 + 16 
 		call_deferred("addBuilding")
-	
+	objectType = GameDataConstants.ObjectTypeEnum.BUILDING
 func _process(delta: float) -> void:
-	select.visible = Selected
 	pass
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Left_Click"):
-		if mouseEntered == true:
-			Selected = !Selected
-			if Selected == true:
-				pass
-			#Game.spawnUnit(global_position, self.name)
-			#切换到招募ui
-			DataManager.setavailableUnitSpawnList(unitList)
-			var ui = Game.getBuildMenu()
-			if ui:
-				ui.changeToRecruitUI()
 func _on_area_2d_mouse_entered() -> void:
 	mouseEntered = true
 	Game.setMouseTarget(self)
@@ -63,3 +53,11 @@ func set_on_place():
 
 func addBuilding():
 	Game.addBuildingPlaced(self)
+	
+func setfraction(farction: GameDataConstants.FarctionEnum):
+	attribute.farction = farction
+	healthbar.setProgressBarColor(farction)
+	pass
+func selectBuilding(bSelected: bool) -> void:
+	Selected = bSelected
+	selectBox.visible = bSelected

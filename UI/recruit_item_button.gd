@@ -15,20 +15,23 @@ func _on_pressed() -> void:
 	var randomPosY = rng.randi_range(-50, 50)
 	var uniPath = get_tree().get_root().get_node("main_world/Units")
 	var worldPath = get_tree().get_root().get_node("main_world")
-	var unit1
+	var unit
 	
 	if (DataManager.getPopulation() < unitSpawnData.getPopulationCost()):
+		return
+	if Game.getFocusBuilding() == null:
 		return
 	DataManager.setPopulation(DataManager.getPopulation() -\
 		 unitSpawnData.getPopulationCost())
 	match unitSpawnData.getUnitType():
 		GameDataConstants.UnitTypeEnum.WORKER:
-			unit1 = worker.instantiate()
+			unit = worker.instantiate()
 		GameDataConstants.UnitTypeEnum.SOILDER:
-			unit1 = soilder.instantiate()
-	if unit1 != null:
-		unit1.position = housePos + Vector2(randomPosX, randomPosY)
-	uniPath.add_child(unit1)
+			unit = soilder.instantiate()
+	if unit != null:
+		unit.position = Game.getFocusBuilding().position + Vector2(randomPosX, randomPosY)
+	uniPath.add_child(unit)
+	unit.setfraction(Game.getFocusBuilding().attribute.farction)
 	worldPath.get_units()
 	
 func setRecruitData(data: UnitSpawnData):

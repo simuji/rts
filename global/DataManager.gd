@@ -55,8 +55,8 @@ func _ready() -> void:
 	resourceList[GameDataConstants.ResourceTypeEnum.TREE] = treeResource
 	resourceList[GameDataConstants.ResourceTypeEnum.STONE] = stoneResource
 	
-	maxPopulation = 10
-	population = 6
+	maxPopulation = 100
+	population = 60
 	
 	money = 0
 func getUnitSpawnList() -> Dictionary[int, UnitSpawnData]:

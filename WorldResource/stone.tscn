@@ -8,8 +8,9 @@
 script = ExtResource("3_5w525")
 metadata/_custom_type_script = "uid://c8nnrkes7uo6j"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5w525"]
-radius = 15.508062
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5w525"]
+radius = 13.0
+height = 26.0
 
 [node name="stone" instance=ExtResource("1_6s6ed")]
 position = Vector2(0, 12)
@@ -22,13 +23,13 @@ position = Vector2(0, 0)
 region_rect = Rect2(224, 256, 32, 32)
 
 [node name="NavigationObstacle2D" parent="." index="1"]
-radius = 17.3
+vertices = PackedVector2Array(8, 12, -6, 12, -12, 8, -12, 0, -7, -3, 9, -3, 13, 1, 13, 8)
 
-[node name="CollisionShape2D" parent="Click2D" index="0"]
-position = Vector2(0, 0)
-shape = SubResource("CircleShape2D_5w525")
+[node name="CollisionShape2D" parent="ClickArea" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_5w525")
 
-[node name="HealthPointProgressBar" parent="." index="5"]
+[node name="HealthPointProgressBar" parent="." index="4"]
 offset_left = -17.0
 offset_top = -24.0
 offset_right = 19.0
