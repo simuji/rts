@@ -18,9 +18,9 @@ func _ready() -> void:
 	gridSize = Vector2(grid.cellWidth, grid.cellHeight)
 	print("setbuild controller")
 	call_deferred("setController")
-	Game.setBuildController(self)
+	PlayerController.setBuildController(self)
 func _exit_tree() -> void:
-	Game.setBuildController(null)
+	PlayerController.setBuildController(null)
 
 func build(data: BuildingSpawnData):
 	if !data:
@@ -42,7 +42,7 @@ func build(data: BuildingSpawnData):
 			return
 		add_child(newBuilding)
 		newBuilding.global_position = get_global_mouse_position()
-		newBuilding.setfraction(Game.currentFarctionEnum)
+		newBuilding.setfraction(PlayerController.currentFarctionEnum)
 		object = newBuilding
 		isBuilding = true
 		grid.visible = true
@@ -61,7 +61,7 @@ func _input(event: InputEvent):
 		isValid = null
 func _process(delta: float) -> void:
 	if not object: return
-	for building in Game.buildingPlaced:
+	for building in PlayerController.buildingPlaced:
 		if !building.bPlaced:
 			do_placement(building)
 			building.bPlaced = true
@@ -133,4 +133,4 @@ func adjust_position(obj):
 	obj.global_position = targetCell.global_position + object.rect.size/2
 
 func setController():
-	Game.setBuildController(self)
+	PlayerController.setBuildController(self)

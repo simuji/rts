@@ -1,5 +1,6 @@
 extends Node
 enum ObjectTypeEnum {
+	NULL,
 	BUILDING,
 	RESOURCE,
 	UNIT

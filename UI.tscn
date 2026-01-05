@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://y3ljqkp06tro"]
 
 [ext_resource type="Script" uid="uid://522duv4jh66s" path="res://ui.gd" id="1_b3bc3"]
-[ext_resource type="PackedScene" uid="uid://0by5ktincg74" path="res://mouse.tscn" id="2_3b2b5"]
 [ext_resource type="Texture2D" uid="uid://c52v5x40ury3q" path="res://UI/biankuang.png" id="3_g6l6n"]
 [ext_resource type="Texture2D" uid="uid://bu4prdv3mkaue" path="res://UI/smallMap.png" id="4_qui0h"]
 [ext_resource type="Script" uid="uid://dw3nn18jho3pw" path="res://sub_viewport.gd" id="5_vrfts"]
 [ext_resource type="PackedScene" uid="uid://c7iwxbu82rvdh" path="res://UI/BuildMenu.tscn" id="6_0mc3e"]
 [ext_resource type="PackedScene" uid="uid://de7rutnjjap6b" path="res://UI/ResourceUI.tscn" id="7_2n5f6"]
+[ext_resource type="PackedScene" uid="uid://bvm16pulxqct8" path="res://UI/mouse.tscn" id="7_27c8x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3bc3"]
 bg_color = Color(0, 0, 0, 0.43529412)
@@ -22,10 +22,6 @@ script = ExtResource("1_b3bc3")
 
 [node name="Panel" type="Panel" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_b3bc3")
-
-[node name="mouse" parent="." instance=ExtResource("2_3b2b5")]
-z_index = 1000
-position = Vector2(104, 98)
 
 [node name="Biankuang" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
@@ -88,3 +84,5 @@ offset_left = 307.0
 offset_top = 389.0
 offset_right = 347.0
 offset_bottom = 429.0
+
+[node name="Control2" parent="." instance=ExtResource("7_27c8x")]

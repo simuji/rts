@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var target = position
 
 @onready var searchedObjectMap: Dictionary #保存现在在unit的搜寻范围内的物体
-@onready var attributeComponent = $AttributeComponent
+@onready var attribute = $AttributeComponent
 @onready var healthBar = $HealthPointProgressBar
 @onready var objectType: GameDataConstants.ObjectTypeEnum
 var currentTarget: Object #保存当前unit的target
@@ -37,8 +37,8 @@ var fa
 func _ready() -> void:
 	set_selected(selected)
 	add_to_group("Units", true)
-	attributeComponent.Destroyed.connect(_on_destroy)
-	attributeComponent.Attcked.connect(_on_attacked)
+	attribute.Destroyed.connect(_on_destroy)
+	attribute.Attcked.connect(_on_attacked)
 	objectType = GameDataConstants.ObjectTypeEnum.UNIT
 func set_selected(value:bool):
 	selectedBox.visible = value
@@ -52,7 +52,7 @@ func  _input(event):
 		follow_cursor = true
 		if selected:
 			changeUnitState(UnitState.WALK)
-			currentTarget = Game.getMouseTarget()
+			currentTarget = PlayerController.getMouseTarget()
 			currentTargetString = currentTarget.to_string() if currentTarget != null else ""
 			var target_navigation_obstacle = null
 			var target_desired_distance = DEFAULT_TARGET_DESIRE_DISTANCE
@@ -118,11 +118,11 @@ func _on_attacked(oldHealthPoint:float, newHealthPoint: float):
 
 func _on_click_area_2d_mouse_entered() -> void:
 	mouseEntered = true
-	Game.setMouseTarget(self)
+	PlayerController.setMouseTarget(self)
 	
 func _on_click_area_2d_mouse_exited() -> void:
 	mouseEntered = false
-	Game.setMouseTarget(null)
+	PlayerController.setMouseTarget(null)
 
 func changeUnitState(state: UnitState):
 	if(oldUnitState != currentUnitState):
@@ -133,6 +133,6 @@ func arrive():
 	pass
 	
 func setfraction(farction: GameDataConstants.FarctionEnum):
-	attributeComponent.farction = farction
+	attribute.farction = farction
 	healthBar.setProgressBarColor(farction)
 	pass

@@ -7,12 +7,12 @@ func _ready() -> void:
 	super._ready()
 	buildingData = DataManager.buildingSpawnList[buildingType]
 	populationIncreasedSpeed = buildingData.populationIncreaseSpeed
-	if buildingData.getFarction() == Game.currentFarctionEnum:
+	if buildingData.getFarction() == PlayerController.currentFarctionEnum:
 		DataManager.setMaxPopulation(DataManager.getMaxPopulation() + \
 			buildingData.maxPopulationIncreased)
 
 func _on_timer_timeout() -> void:
-	if buildingData.getFarction() == Game.currentFarctionEnum:
+	if buildingData.getFarction() == PlayerController.currentFarctionEnum:
 		DataManager.setPopulation(DataManager.getPopulation() + \
 			populationIncreasedSpeed)
 func _to_string() -> String:

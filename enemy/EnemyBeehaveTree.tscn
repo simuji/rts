@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://coyq5ryay3gqh"]
+
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_ik4fr"]
+[ext_resource type="Script" uid="uid://dme5f24l0edsf" path="res://addons/beehave/blackboard.gd" id="2_dswl3"]
+
+[node name="EnemyBeehaveAgent" type="Node2D" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_ik4fr")
+blackboard = NodePath("@Node@29422")
+actor = NodePath("..")
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource("2_dswl3")
+metadata/_custom_type_script = "uid://dme5f24l0edsf"

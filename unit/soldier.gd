@@ -48,7 +48,7 @@ func arrive():
 			if currentTarget == self:
 				changeUnitState(UnitState.IDLE)
 				return
-			if currentTarget.attributeComponent.farction == self.attributeComponent.farction:
+			if currentTarget.attribute.farction == self.attribute.farction:
 				changeUnitState(UnitState.IDLE)
 				return
 			changeUnitState(UnitState.ATTACK)

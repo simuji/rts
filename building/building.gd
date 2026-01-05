@@ -34,10 +34,12 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_mouse_entered() -> void:
 	mouseEntered = true
-	Game.setMouseTarget(self)
+	pass
+	#Game.setMouseTarget(self)
 func _on_area_2d_mouse_exited() -> void:
 	mouseEntered = false
-	Game.setMouseTarget(null)
+	pass
+	#Game.setMouseTarget(null)
 
 func _on_destroy():
 	queue_free()
@@ -52,7 +54,7 @@ func set_on_place():
 	sprite.modulate.a = 255
 
 func addBuilding():
-	Game.addBuildingPlaced(self)
+	PlayerController.addBuildingPlaced(self)
 	
 func setfraction(farction: GameDataConstants.FarctionEnum):
 	attribute.farction = farction

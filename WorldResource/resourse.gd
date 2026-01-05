@@ -9,7 +9,7 @@ var mouseEntered = false
 var bPlaced: bool = false
 @onready var sprite = $Sprite2D
 @onready var bar = $HealthPointProgressBar
-@onready var attributeComponent = $AttributeComponent
+@onready var attribute = $AttributeComponent
 @onready var curMousePosition 
 @onready var objectType: GameDataConstants.ObjectTypeEnum
 @export var rect: Rect2
@@ -19,7 +19,7 @@ var bPlaced: bool = false
 func _ready() -> void:
 	currentTime = totalTime
 	bar.max_value = totalTime
-	attributeComponent.Destroyed.connect(_on_destroy)
+	attribute.Destroyed.connect(_on_destroy)
 	objectType = GameDataConstants.ObjectTypeEnum.RESOURCE
 	if isPreBuild:
 		if (int(rect.size.x) / 32 % 2 == 0):
@@ -35,10 +35,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 func _on_area_2d_mouse_entered() -> void:
-	Game.setMouseTarget(self)
+	pass
+	#Game.setMouseTarget(self)
 
 func _on_area_2d_mouse_exited() -> void:
-	Game.setMouseTarget(null)
+	pass
+	#Game.setMouseTarget(null)
 	
 func _on_destroy():
 	if resourcedata:
@@ -51,6 +53,6 @@ func get_global_rect() -> Rect2:
 		rect.size
 	)
 func addResource():
-	Game.addBuildingPlaced(self)
+	PlayerController.addBuildingPlaced(self)
 func set_on_place():
 	sprite.modulate.a = 255

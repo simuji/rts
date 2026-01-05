@@ -5,7 +5,7 @@ var buildData: BuildingSpawnData
 @onready var textureRect:TextureRect = $TextureRect
 @onready var descriptionUI = $BuildingDescriptionUI
 func _on_pressed() -> void:
-	var buildController = Game.getBuildController()
+	var buildController = PlayerController.getBuildController()
 	if buildController:
 		print("startBuild")
 		buildController.build(buildData);

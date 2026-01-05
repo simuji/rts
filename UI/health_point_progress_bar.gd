@@ -18,7 +18,7 @@ func setProgressBarColor(farctionEnum : GameDataConstants.FarctionEnum):
 		var progress_style = StyleBoxFlat.new()
 		progress_style.bg_color = Color(1, 1, 0)  
 		add_theme_stylebox_override("fill", progress_style)
-	elif farctionEnum == Game.currentFarctionEnum:
+	elif farctionEnum == PlayerController.currentFarctionEnum:
 		print("友方单位")
 		var progress_style = StyleBoxFlat.new()
 		progress_style.bg_color = Color(0, 1, 0)  # 蓝色（RGB值范围 0-1）

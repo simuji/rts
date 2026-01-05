@@ -1,7 +1,9 @@
 extends StaticBody2D
 
 func _on_mouse_exited() -> void:
-	Game.setMouseTarget(null)
+	pass
+	#GameController.setMouseTarget(null)
 
 func _on_mouse_entered() -> void:
-	Game.setMouseTarget(self)
+	pass
+	#Game.setMouseTarget(self)

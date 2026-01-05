@@ -19,7 +19,7 @@ func _on_pressed() -> void:
 	
 	if (DataManager.getPopulation() < unitSpawnData.getPopulationCost()):
 		return
-	if Game.getFocusBuilding() == null:
+	if PlayerController.getFocusBuilding() == null:
 		return
 	DataManager.setPopulation(DataManager.getPopulation() -\
 		 unitSpawnData.getPopulationCost())
@@ -29,9 +29,9 @@ func _on_pressed() -> void:
 		GameDataConstants.UnitTypeEnum.SOILDER:
 			unit = soilder.instantiate()
 	if unit != null:
-		unit.position = Game.getFocusBuilding().position + Vector2(randomPosX, randomPosY)
+		unit.position = PlayerController.getFocusBuilding().position + Vector2(randomPosX, randomPosY)
 	uniPath.add_child(unit)
-	unit.setfraction(Game.getFocusBuilding().attribute.farction)
+	unit.setfraction(PlayerController.getFocusBuilding().attribute.farction)
 	worldPath.get_units()
 	
 func setRecruitData(data: UnitSpawnData):

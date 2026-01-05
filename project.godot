@@ -17,14 +17,21 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Game="*res://global/Game.gd"
+PlayerController="*res://global/PlayerController.gd"
 DamageController="*res://global/DamageController.gd"
 GameDataConstants="*res://global/GameDataConstants.gd"
 DataManager="*res://global/DataManager.gd"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 [input]
 

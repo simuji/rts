@@ -13,10 +13,10 @@ func _process(delta):
 	if overlapping_bodies:
 		pass
 	elif overlapping_areas:
-		if overlapping_areas[0].get_parent() != Game.getMouseTarget():
+		if overlapping_areas[0].get_parent() != PlayerController.getMouseTarget():
 			print("鼠标下的物理体：", overlapping_areas[0].get_parent().to_string())
-			Game.setMouseTarget(overlapping_areas[0].get_parent())
+			PlayerController.setMouseTarget(overlapping_areas[0].get_parent())
 	else:
-		if Game.getMouseTarget() != null:
+		if PlayerController.getMouseTarget() != null:
 			print("鼠标下的物理体：空")
-			Game.setMouseTarget(null)
+			PlayerController.setMouseTarget(null)
