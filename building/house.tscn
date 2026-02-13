@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cou44g84j3e6s"]
+[gd_scene format=3 uid="uid://cou44g84j3e6s"]
 
 [ext_resource type="Script" uid="uid://dqxbdpfpdlcxn" path="res://building/house.gd" id="1_5uxbu"]
 [ext_resource type="PackedScene" uid="uid://druesh2rh5xrk" path="res://building/building.tscn" id="1_jaabe"]
@@ -10,18 +10,17 @@ buildCost = Dictionary[int, int]({
 0: 5,
 1: 10
 })
-farction = 2
 metadata/_custom_type_script = "uid://4lp3w6jdgti"
 
-[node name="house" instance=ExtResource("1_jaabe")]
+[node name="house" unique_id=900350052 instance=ExtResource("1_jaabe")]
+z_as_relative = false
 script = ExtResource("1_5uxbu")
 buildingData = SubResource("Resource_camqb")
 
-[node name="NavigationObstacle2D" parent="." index="2"]
-radius = 0.0
-vertices = PackedVector2Array(16, 20, -17, 20, -25, 14, -18, 9, 17, 9, 24, 15)
+[node name="NavigationObstacle2D" parent="." index="2" unique_id=1718524814]
+vertices = PackedVector2Array(17, 23, -18, 23, -22, 11, -17, 2, 17, 2, 21, 13)
 
-[node name="Timer" type="Timer" parent="." index="7"]
+[node name="Timer" type="Timer" parent="." index="6" unique_id=767417775]
 wait_time = 5.0
 autostart = true
 

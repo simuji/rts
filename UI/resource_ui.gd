@@ -1,5 +1,5 @@
 extends Control
-
+class_name ResourceUI
 var resourceItemUI = preload("res://UI/ResourceItem.tscn")
 @onready var populationText = $TextureRect/HBoxContainer/PopulationText
 @onready var grid : GridContainer = $TextureRect/GridContainer
@@ -18,7 +18,7 @@ func updataItemUI():
 	clearGrid()
 	for itemIndex : int in currentitemList:
 		var item = resourceItemUI.instantiate()
-		var itemData = itemList[itemIndex]
+		var itemData: ItemData_ = itemList[itemIndex]
 		grid.add_child(item)
 		item.setItemIcon(itemData.getItemIcon())
 		item.setItemCount(currentitemList[itemIndex])

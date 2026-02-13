@@ -1,5 +1,5 @@
 extends Resource
-class_name ItemData
+class_name ItemData_
 @export var itemName: String
 #物品类型
 @export var itemType: GameDataConstants.ItemTypeEnum

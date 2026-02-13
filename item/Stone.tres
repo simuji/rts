@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cko8cx4qlm7eu"]
+[gd_resource type="Resource" script_class="ItemData_" load_steps=3 format=3 uid="uid://cnb6xku113nyh"]
 
-[ext_resource type="Script" uid="uid://dw2rxb5clskl2" path="res://item/ItemData.gd" id="1_d7tny"]
+[ext_resource type="Script" uid="uid://dw2rxb5clskl2" path="res://item/ItemData1.gd" id="1_d7tny"]
 [ext_resource type="Texture2D" uid="uid://dfwt2ms1uya32" path="res://UI/I_Stone_Icon.png" id="1_tc4r4"]
 
 [resource]
 script = ExtResource("1_d7tny")
-itemName = "石头"
-itemType = 2
+itemName = "Stone"
 itemIcon = ExtResource("1_tc4r4")

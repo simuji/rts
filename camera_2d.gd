@@ -23,7 +23,7 @@ signal area_selected
 signal start_move_selection
 
 func _ready() -> void:
-	connect("area_selected", Callable(get_parent(), "_on_area_selected"))
+	connect("area_selected", Callable(PlayerController, "_on_area_selected"))
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	position.x = 0
 	position.y = 0

@@ -14,8 +14,8 @@ class_name BuildingSpawnData
 #人口增加速率，单位: 人/每单位时间
 @export var populationIncreaseSpeed: int
 @export var maxPopulationIncreased: int
-@export var farction: GameDataConstants.FarctionEnum =\
-			 GameDataConstants.FarctionEnum.NEUTRAL
+@export var farction: String
+@export var buildPosition: Vector2
 func getBuildType() -> GameDataConstants.BuildingTypeEnum:
 	return buildType
 func setBuildType(type: GameDataConstants.BuildingTypeEnum):
@@ -36,7 +36,12 @@ func getProductionList() -> Dictionary[GameDataConstants.ItemTypeEnum,int]:
 	return productionList
 func setProductionList(list: Dictionary[GameDataConstants.ItemTypeEnum,int]):
 	productionList = list
-func getFarction() -> GameDataConstants.FarctionEnum:
+func getFarction() -> String:
 	return farction
-func setFarction(value: GameDataConstants.FarctionEnum):
+func setFarction(value: String):
 	farction = value
+func setBuildPosition(position: Vector2):
+	buildPosition = position
+func getBuildPosition() -> Vector2:
+	return buildPosition
+	

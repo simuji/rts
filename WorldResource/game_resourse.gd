@@ -1,5 +1,5 @@
 extends StaticBody2D
-
+class_name GameResource
 @export var resourcedata: ResourceData
 
 var totalTime = 5
@@ -8,9 +8,9 @@ var units = 0
 var mouseEntered = false
 var bPlaced: bool = false
 @onready var sprite = $Sprite2D
-@onready var bar = $HealthPointProgressBar
-@onready var attribute = $AttributeComponent
-@onready var curMousePosition 
+@onready var bar: HealthPointProgressBar = $HealthPointProgressBar
+@onready var attribute: AttributeComponent = $AttributeComponent
+@onready var curMousePosition
 @onready var objectType: GameDataConstants.ObjectTypeEnum
 @export var rect: Rect2
 @export var isPreBuild: bool
@@ -31,6 +31,9 @@ func _ready() -> void:
 		else:
 			global_position.y = round(global_position.y / 32) * 32 + 16 
 		call_deferred("addResource")
+	attribute.farction = "NEUTRAL"
+	bar.setProgressBarColor("NEUTRAL")
+	DataManager.addResourceForCurrentLevel(self)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -45,6 +48,7 @@ func _on_area_2d_mouse_exited() -> void:
 func _on_destroy():
 	if resourcedata:
 		DataManager.itemDataManager.obtain_resource(resourcedata.getReward())
+	DataManager.removeaResourceForCurrentLevel(self)
 	queue_free()
 	
 func get_global_rect() -> Rect2:

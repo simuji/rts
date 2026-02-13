@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bl4vvey1c2tts"]
 
-[ext_resource type="PackedScene" uid="uid://cm6c33wedu6f0" path="res://WorldResource/Resourse.tscn" id="1_6s6ed"]
+[ext_resource type="PackedScene" uid="uid://cm6c33wedu6f0" path="res://WorldResource/GameResource.tscn" id="1_6s6ed"]
 [ext_resource type="Script" uid="uid://1p1hr7qrb7lx" path="res://WorldResource/stone.gd" id="2_n2dwo"]
 [ext_resource type="Script" uid="uid://c8nnrkes7uo6j" path="res://WorldResource/ResourceData.gd" id="3_5w525"]
 

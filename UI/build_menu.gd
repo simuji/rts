@@ -1,5 +1,5 @@
 extends TextureRect
-
+class_name BuildMenu
 @onready var buildMenuItem = preload("res://UI/BuildItemButton.tscn")
 @onready var RecruitMenuItem = preload("res://UI/RecruitItemButton.tscn")
 @onready var buidItemContainer: GridContainer = $buildItemContainer

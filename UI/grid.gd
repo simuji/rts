@@ -1,4 +1,5 @@
 @tool
+class_name Grid
 extends GridContainer
 var tilemap : TileMapLayer
 

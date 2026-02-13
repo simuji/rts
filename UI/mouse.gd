@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Mouse
 @onready var sprite = $Sprite2D
 
 var mouseNormalTexutre = preload("res://UI/MouseArrow.png")

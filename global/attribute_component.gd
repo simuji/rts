@@ -1,5 +1,6 @@
 extends Node
 
+class_name AttributeComponent
 @export var healthPoint: float = 100.0
 @export var maxHealthPoint: float = 100.0
 #建造花费
@@ -7,7 +8,8 @@ extends Node
 @export var attack: float = 0.0
 
 #阵营
-@export var farction: GameDataConstants.FarctionEnum = GameDataConstants.FarctionEnum.NEUTRAL
+@export var farction: String
+#@export var farction: GameDataConstants.FarctionEnum = GameDataConstants.FarctionEnum.NEUTRAL
 
 signal Destroyed()
 signal HealthChanged(oldHealthPoint: float, newHealthPoint: float)

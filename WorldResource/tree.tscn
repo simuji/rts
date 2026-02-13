@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkfh7f2ubd8dt"]
 
-[ext_resource type="PackedScene" uid="uid://cm6c33wedu6f0" path="res://WorldResource/Resourse.tscn" id="1_brfkd"]
+[ext_resource type="PackedScene" uid="uid://cm6c33wedu6f0" path="res://WorldResource/GameResource.tscn" id="1_brfkd"]
 [ext_resource type="Script" uid="uid://cuop83ta64qfp" path="res://WorldResource/tree.gd" id="2_p2exo"]
 
 [node name="tree" instance=ExtResource("1_brfkd")]
 script = ExtResource("2_p2exo")
-rect = Rect2(0, 0, 32, 32)
 
 [node name="NavigationObstacle2D" parent="." index="1"]
 vertices = PackedVector2Array(5, 2, -4, 2, -6, 0, -6, -2, -5, -3, 5, -3, 6, -2, 6, 0)

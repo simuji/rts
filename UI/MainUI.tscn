@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://ol35p0iefdrm"]
+
+[ext_resource type="Script" uid="uid://cp2obhn65tkps" path="res://UI/main_ui.gd" id="1_wwh41"]
+[ext_resource type="PackedScene" uid="uid://k418gwk4crt" path="res://UI/menuUI/FarctionSelectItem.tscn" id="1_xv1u1"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wwh41")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 177.0
+offset_right = 147.0
+offset_bottom = 206.0
+text = "开始游戏"
+
+[node name="FarctionContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 40
+
+[node name="FactionItem" parent="FarctionContainer" instance=ExtResource("1_xv1u1")]
+layout_mode = 2
+
+[node name="FactionItem2" parent="FarctionContainer" instance=ExtResource("1_xv1u1")]
+layout_mode = 2
+
+[node name="FactionItem3" parent="FarctionContainer" instance=ExtResource("1_xv1u1")]
+layout_mode = 2
+
+[connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]

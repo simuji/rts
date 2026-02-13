@@ -1,9 +1,12 @@
 extends "res://unit/unit.gd"
-
+class_name Soldier
 @onready var anim = $"AnimationPlayer"
 @onready var animTree = $AnimationTree
 @onready var animation_state = animTree.get("parameters/playback")
 
+func _ready() -> void:
+	super._ready()
+	unitType = GameDataConstants.UnitTypeEnum.SOILDER
 func changeUnitState(state: UnitState):
 	super.changeUnitState(state)
 	match state:
@@ -48,7 +51,7 @@ func arrive():
 			if currentTarget == self:
 				changeUnitState(UnitState.IDLE)
 				return
-			if currentTarget.attribute.farction == self.attribute.farction:
+			if currentTarget && currentTarget.attribute.farction == self.attribute.farction:
 				changeUnitState(UnitState.IDLE)
 				return
 			changeUnitState(UnitState.ATTACK)

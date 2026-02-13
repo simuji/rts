@@ -1,31 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7iwxbu82rvdh"]
+[gd_scene format=3 uid="uid://c7iwxbu82rvdh"]
 
 [ext_resource type="Texture2D" uid="uid://cew80py15i8p8" path="res://UI/BuildMenu.png" id="1_mo5q8"]
 [ext_resource type="Texture2D" uid="uid://cikf7ugkjs72c" path="res://UI/buildMenuButton.png" id="2_435ih"]
 [ext_resource type="Script" uid="uid://n0houdt5mgq1" path="res://UI/build_menu.gd" id="2_i58mc"]
 [ext_resource type="Texture2D" uid="uid://c8wkh86qhjiwn" path="res://UI/buildMenuButtonPressed2.png" id="3_435ih"]
 
-[node name="BuildMenu" type="TextureRect"]
+[node name="BuildMenu" type="TextureRect" unique_id=1296862876]
 offset_right = 573.0
 offset_bottom = 234.0
 texture = ExtResource("1_mo5q8")
 script = ExtResource("2_i58mc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1671928375]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 19.0
 offset_right = 96.0
 offset_bottom = 220.0
 
-[node name="BuildButton" type="TextureButton" parent="VBoxContainer"]
+[node name="BuildButton" type="TextureButton" parent="VBoxContainer" unique_id=1298564238]
 layout_mode = 2
 tooltip_text = "建造
 "
 texture_normal = ExtResource("2_435ih")
 texture_pressed = ExtResource("3_435ih")
 
-[node name="Label" type="Label" parent="VBoxContainer/BuildButton"]
+[node name="Label" type="Label" parent="VBoxContainer/BuildButton" unique_id=1239326436]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
@@ -36,12 +36,12 @@ text = "建造"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProductButton" type="TextureButton" parent="VBoxContainer"]
+[node name="ProductButton" type="TextureButton" parent="VBoxContainer" unique_id=152543089]
 layout_mode = 2
 texture_normal = ExtResource("2_435ih")
 texture_pressed = ExtResource("3_435ih")
 
-[node name="Label" type="Label" parent="VBoxContainer/ProductButton"]
+[node name="Label" type="Label" parent="VBoxContainer/ProductButton" unique_id=1076056573]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
@@ -52,12 +52,12 @@ text = "生产"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TecnologyButton" type="TextureButton" parent="VBoxContainer"]
+[node name="TecnologyButton" type="TextureButton" parent="VBoxContainer" unique_id=1547076718]
 layout_mode = 2
 texture_normal = ExtResource("2_435ih")
 texture_pressed = ExtResource("3_435ih")
 
-[node name="Label" type="Label" parent="VBoxContainer/TecnologyButton"]
+[node name="Label" type="Label" parent="VBoxContainer/TecnologyButton" unique_id=1384328636]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
@@ -68,12 +68,12 @@ text = "科技"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RecruitButton" type="TextureButton" parent="VBoxContainer"]
+[node name="RecruitButton" type="TextureButton" parent="VBoxContainer" unique_id=475706450]
 layout_mode = 2
 texture_normal = ExtResource("2_435ih")
 texture_pressed = ExtResource("3_435ih")
 
-[node name="Label" type="Label" parent="VBoxContainer/RecruitButton"]
+[node name="Label" type="Label" parent="VBoxContainer/RecruitButton" unique_id=578762920]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
@@ -85,12 +85,12 @@ text = "招募
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DemolishButton" type="TextureButton" parent="VBoxContainer"]
+[node name="DemolishButton" type="TextureButton" parent="VBoxContainer" unique_id=1708673467]
 layout_mode = 2
 texture_normal = ExtResource("2_435ih")
 texture_pressed = ExtResource("3_435ih")
 
-[node name="Label" type="Label" parent="VBoxContainer/DemolishButton"]
+[node name="Label" type="Label" parent="VBoxContainer/DemolishButton" unique_id=211309233]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
@@ -101,7 +101,7 @@ text = "拆除"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="buildItemContainer" type="GridContainer" parent="."]
+[node name="buildItemContainer" type="GridContainer" parent="." unique_id=1614818064]
 layout_mode = 0
 offset_left = 137.0
 offset_top = 20.0

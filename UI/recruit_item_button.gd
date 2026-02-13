@@ -32,7 +32,7 @@ func _on_pressed() -> void:
 		unit.position = PlayerController.getFocusBuilding().position + Vector2(randomPosX, randomPosY)
 	uniPath.add_child(unit)
 	unit.setfraction(PlayerController.getFocusBuilding().attribute.farction)
-	worldPath.get_units()
+	PlayerController.get_units()
 	
 func setRecruitData(data: UnitSpawnData):
 	unitSpawnData = data

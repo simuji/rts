@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name RayCastManager
 @onready var ray_cast: RayCast2D = $RayCast2D
 func _process(delta):
 	# 让射线指向鼠标位置
@@ -9,10 +9,10 @@ func _process(delta):
 	# 获取射线碰撞到的物体
 	if ray_cast.is_colliding():
 		var hovered_obj = ray_cast.get_collider()
-		if Game.getMouseTarget() != hovered_obj:
-			Game.setMouseTarget(hovered_obj)
+		if PlayerController.getMouseTarget() != hovered_obj:
+			PlayerController.setMouseTarget(hovered_obj)
 		print("悬浮物体：", hovered_obj.name)
 	else:
-		if Game.getMouseTarget() != null:
+		if PlayerController.getMouseTarget() != null:
 			pass
 			#Game.setMouseTarget(null)

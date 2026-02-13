@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://coyq5ryay3gqh"]
+[gd_scene load_steps=5 format=3 uid="uid://csyxan7m8bofn"]
 
-[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_ik4fr"]
-[ext_resource type="Script" uid="uid://dme5f24l0edsf" path="res://addons/beehave/blackboard.gd" id="2_dswl3"]
+[ext_resource type="Script" uid="uid://cfy650ag23lrt" path="res://enemy/enemy_beehave_tree.gd" id="1_7gd6d"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_b5i33"]
+[ext_resource type="Script" uid="uid://bc36iwi2hhdkg" path="res://enemy/check_resource.gd" id="3_7gd6d"]
+[ext_resource type="Script" uid="uid://c22ycuj7m8q0x" path="res://enemy/build_action.gd" id="3_wodv8"]
 
-[node name="EnemyBeehaveAgent" type="Node2D" node_paths=PackedStringArray("blackboard", "actor")]
-script = ExtResource("1_ik4fr")
-blackboard = NodePath("@Node@29422")
-actor = NodePath("..")
+[node name="easyEnemyBeehave" type="Node"]
+script = ExtResource("1_7gd6d")
+tick_rate = 50000
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
-[node name="Blackboard" type="Node" parent="."]
-script = ExtResource("2_dswl3")
-metadata/_custom_type_script = "uid://dme5f24l0edsf"
+[node name="SequenceComposite" type="Node" parent="."]
+script = ExtResource("2_b5i33")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="checkResource" type="Node" parent="SequenceComposite"]
+script = ExtResource("3_7gd6d")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="buildAction" type="Node" parent="SequenceComposite"]
+script = ExtResource("3_wodv8")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"

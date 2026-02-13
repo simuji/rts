@@ -1,6 +1,6 @@
 extends ProgressBar
-
-var attributeComponent: Object = null
+class_name HealthPointProgressBar
+var attributeComponent: AttributeComponent = null
 
 func _ready() -> void:
 	attributeComponent = get_parent().find_child("AttributeComponent")
@@ -12,8 +12,8 @@ func on_health_changed(oldHealthPoint:float, newHealthPoint: float):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "value", newHealthPoint, 0.3).set_trans(tween.TRANS_LINEAR)
 	
-func setProgressBarColor(farctionEnum : GameDataConstants.FarctionEnum):
-	if farctionEnum == GameDataConstants.FarctionEnum.NEUTRAL:
+func setProgressBarColor(farctionEnum : String):
+	if farctionEnum == "NEUTRAL":
 		print("中立单位")
 		var progress_style = StyleBoxFlat.new()
 		progress_style.bg_color = Color(1, 1, 0)  

@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name SpawnUI
 @onready var worker = preload("res://unit/worker.tscn")
 @onready var soilder = preload("res://unit/soldier.tscn")
 var housePos = Vector2(300, 300)

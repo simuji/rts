@@ -1,5 +1,5 @@
 extends PanelContainer
-
+class_name CusPanelContainer
 @export var full = false
 
 func _ready() -> void:

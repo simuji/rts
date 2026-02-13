@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://y3ljqkp06tro"]
 
-[ext_resource type="Script" uid="uid://522duv4jh66s" path="res://ui.gd" id="1_b3bc3"]
+[ext_resource type="Script" uid="uid://522duv4jh66s" path="res://ControllerUI.gd" id="1_b3bc3"]
 [ext_resource type="Texture2D" uid="uid://c52v5x40ury3q" path="res://UI/biankuang.png" id="3_g6l6n"]
 [ext_resource type="Texture2D" uid="uid://bu4prdv3mkaue" path="res://UI/smallMap.png" id="4_qui0h"]
 [ext_resource type="Script" uid="uid://dw3nn18jho3pw" path="res://sub_viewport.gd" id="5_vrfts"]
@@ -17,7 +17,7 @@ border_width_bottom = 2
 border_color = Color(15.441002, 15.441002, 15.441002, 1)
 border_blend = true
 
-[node name="UI" type="CanvasLayer"]
+[node name="ControllerUI" type="CanvasLayer"]
 script = ExtResource("1_b3bc3")
 
 [node name="Panel" type="Panel" parent="."]

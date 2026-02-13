@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="rts"
-run/main_scene="uid://cwnyh85ml00tq"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://ol35p0iefdrm"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,8 +25,9 @@ PlayerController="*res://global/PlayerController.gd"
 DamageController="*res://global/DamageController.gd"
 GameDataConstants="*res://global/GameDataConstants.gd"
 DataManager="*res://global/DataManager.gd"
-BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
-BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
+SceneController="*res://global/SceneController.gd"
+BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
+BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
 
 [display]
 

@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://k418gwk4crt"]
+
+[ext_resource type="PackedScene" uid="uid://d3fyc05attplc" path="res://UI/menuUI/ColorSelector.tscn" id="1_8ne01"]
+[ext_resource type="Script" uid="uid://dc61odmi0sfvo" path="res://UI/menuUI/farction_select_item.gd" id="1_xpstn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_147v5"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="FarctionSelectItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -850.0
+offset_bottom = -580.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xpstn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 28.0
+offset_right = 856.0
+offset_bottom = 59.0
+
+[node name="farctionName" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_147v5")
+text = "
+"
+
+[node name="factionSelector" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorSelector" parent="HBoxContainer" instance=ExtResource("1_8ne01")]
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/factionSelector" to="." method="_on_faction_selector_pressed"]

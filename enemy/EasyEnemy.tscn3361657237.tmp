@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cv2ah7vl8l0f5"]
+
+[ext_resource type="Script" uid="uid://bpxmmwlclkqcu" path="res://enemy/easy_enemy.gd" id="1_dxvko"]
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_dxvko"]
+[ext_resource type="Script" uid="uid://dvnmhlldp23hg" path="res://addons/beehave/nodes/composites/selector_random.gd" id="3_bus1y"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_cmjle"]
+[ext_resource type="Script" uid="uid://b5iop640q3aue" path="res://addons/beehave/nodes/composites/sequence_random.gd" id="4_53mk5"]
+[ext_resource type="Script" uid="uid://cuydwfsxwf6fq" path="res://enemy/can_recruit.gd" id="5_dhoqu"]
+[ext_resource type="Script" uid="uid://c22ycuj7m8q0x" path="res://enemy/build_action.gd" id="5_xrofq"]
+[ext_resource type="Script" uid="uid://ccuumi0m6vjkh" path="res://enemy/recruit_action.gd" id="6_wxwls"]
+[ext_resource type="Script" uid="uid://cdiyik7oelqa1" path="res://enemy/command_action.gd" id="6_xrofq"]
+[ext_resource type="Script" uid="uid://dcxnx6fwwslm3" path="res://enemy/can_build.gd" id="7_dhoqu"]
+
+[node name="EasyEnemy" type="Node2D" unique_id=585502157]
+script = ExtResource("1_dxvko")
+
+[node name="BeehaveTree" type="Node" parent="." unique_id=39312934 node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("2_dxvko")
+blackboard = NodePath("@Node@40409")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="SelectorRandomComposite" type="Node" parent="BeehaveTree" unique_id=1054386225]
+script = ExtResource("3_bus1y")
+metadata/_custom_type_script = "uid://dvnmhlldp23hg"
+
+[node name="SelectorRandomComposite" type="Node" parent="BeehaveTree/SelectorRandomComposite" unique_id=1752484594]
+script = ExtResource("3_bus1y")
+metadata/_custom_type_script = "uid://dvnmhlldp23hg"
+
+[node name="SequenceComposite2" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite" unique_id=872147350]
+script = ExtResource("3_cmjle")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="canRecruitWorker" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite/SequenceComposite2" unique_id=1947386040]
+script = ExtResource("5_dhoqu")
+maxUnitNum = 20
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="recruitWorkerAction" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite/SequenceComposite2" unique_id=2128158994]
+script = ExtResource("6_wxwls")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="SequenceComposite4" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite" unique_id=1681993190]
+script = ExtResource("3_cmjle")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="canRecruitSoilder" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite/SequenceComposite4" unique_id=220067950]
+script = ExtResource("5_dhoqu")
+unitType = 1
+maxUnitNum = 20
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="recruitSoilderAction" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite/SequenceComposite4" unique_id=1108318423]
+script = ExtResource("6_wxwls")
+recruitUnitType = 1
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="SelectorRandomComposite2" type="Node" parent="BeehaveTree/SelectorRandomComposite" unique_id=602769428]
+script = ExtResource("3_bus1y")
+metadata/_custom_type_script = "uid://dvnmhlldp23hg"
+
+[node name="SequenceComposite2" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite2" unique_id=356769745]
+script = ExtResource("3_cmjle")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="canBuildHouse" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite2/SequenceComposite2" unique_id=742281143]
+script = ExtResource("7_dhoqu")
+maxBuildNum = 5
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="buildHouseAction" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite2/SequenceComposite2" unique_id=874560588]
+script = ExtResource("5_xrofq")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite2" unique_id=140987220]
+script = ExtResource("3_cmjle")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="canBuildHouse" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite2/SequenceComposite" unique_id=1066996844]
+script = ExtResource("7_dhoqu")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="buildHouseAction" type="Node" parent="BeehaveTree/SelectorRandomComposite/SelectorRandomComposite2/SequenceComposite" unique_id=664517317]
+script = ExtResource("5_xrofq")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="SequenceComposite3" type="Node" parent="BeehaveTree/SelectorRandomComposite" unique_id=982406726]
+script = ExtResource("3_cmjle")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="CommandAction" type="Node" parent="BeehaveTree/SelectorRandomComposite/SequenceComposite3" unique_id=1893943300]
+script = ExtResource("6_xrofq")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="SequenceRandomComposite" type="Node" parent="BeehaveTree" unique_id=634429333]
+script = ExtResource("4_53mk5")
+metadata/_custom_type_script = "uid://b5iop640q3aue"

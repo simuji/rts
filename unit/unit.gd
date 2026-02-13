@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Unit
 @export var unitData: UnitSpawnData
 @export var selected = false
 @onready var selectedBox = get_node("SelectedBox")
@@ -9,17 +9,19 @@ extends CharacterBody2D
 @onready var target = position
 
 @onready var searchedObjectMap: Dictionary #保存现在在unit的搜寻范围内的物体
-@onready var attribute = $AttributeComponent
-@onready var healthBar = $HealthPointProgressBar
+@onready var attribute: AttributeComponent = $AttributeComponent
+@onready var healthBar: HealthPointProgressBar = $HealthPointProgressBar
 @onready var objectType: GameDataConstants.ObjectTypeEnum
+@onready var unitType: GameDataConstants.UnitTypeEnum
 var currentTarget: Object #保存当前unit的target
 var currentTargetString: String
 var bTargetInArea:bool = false
 var DEFAULT_TARGET_DESIRE_DISTANCE = 15
 var mouseEntered = false
-var bArrive = false #当前unit是否到达target
+var bArrive = true #当前unit是否到达target
 var follow_cursor = false
 var speed = 40
+var farction: String
 
 enum UnitState {
 	IDLE,
@@ -33,13 +35,14 @@ enum UnitState {
 
 var currentUnitState: UnitState = UnitState.IDLE
 var oldUnitState: UnitState = UnitState.IDLE
-var fa
+
 func _ready() -> void:
 	set_selected(selected)
 	add_to_group("Units", true)
 	attribute.Destroyed.connect(_on_destroy)
 	attribute.Attcked.connect(_on_attacked)
 	objectType = GameDataConstants.ObjectTypeEnum.UNIT
+	
 func set_selected(value:bool):
 	selectedBox.visible = value
 	selected = value
@@ -87,7 +90,18 @@ func _physics_process(delta: float) -> void:
 		bTargetInArea = true
 	else:
 		bTargetInArea = false
-
+func setTarget(targetPos: Vector2, target):
+	navigation_agent.target_position = targetPos
+	changeUnitState(UnitState.WALK)
+	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+	var direction = to_local(next_path_position).normalized()
+	velocity = direction * speed 
+	if (velocity.x >= 0):
+		sprite.flip_h = false
+	else:
+		sprite.flip_h = true
+	navigation_agent.set_velocity(velocity)
+	#判断目标是不是在攻击范围内
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity 
 	move_and_slide()
@@ -113,6 +127,8 @@ func _on_search_area_body_exited(body: Node2D) -> void:
 
 func _on_destroy():
 	changeUnitState(UnitState.DYING)
+	if farction != PlayerController.currentFarctionEnum:
+		SceneController.gameController.farctions[farction].spawnedUnitList.erase(self)
 func _on_attacked(oldHealthPoint:float, newHealthPoint: float):
 	changeUnitState(UnitState.ATTACKED)
 
@@ -132,7 +148,18 @@ func changeUnitState(state: UnitState):
 func arrive():
 	pass
 	
-func setfraction(farction: GameDataConstants.FarctionEnum):
-	attribute.farction = farction
-	healthBar.setProgressBarColor(farction)
+func setfraction(inputFaction: String):
+	print("farction:", inputFaction)
+	attribute.farction = inputFaction
+	farction = inputFaction
+	healthBar.setProgressBarColor(inputFaction)
+	var farctionColor: Color
+	if farction != PlayerController.currentFarctionEnum:
+		SceneController.gameController.farctions[inputFaction].spawnedUnitList.append(self)
+		farctionColor = SceneController.gameController.farctions[inputFaction].color
+	var shader: ShaderMaterial = sprite.material
+	print("color hue",shader.get_shader_parameter("target_hue_center"))
+	var newShader = shader.duplicate(true)
+	newShader.set_shader_parameter("target_hue_center", farctionColor.h)
+	sprite.material = newShader
 	pass

@@ -1,23 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://de7rutnjjap6b"]
+[gd_scene format=3 uid="uid://de7rutnjjap6b"]
 
 [ext_resource type="Texture2D" uid="uid://dvf7h4lcbhw1k" path="res://UI/resourceUI.png" id="1_1xgq5"]
 [ext_resource type="Script" uid="uid://cxd46yl8ndofc" path="res://UI/resource_ui.gd" id="1_x6pex"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=375028480]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_x6pex")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1918326491]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.997796, 1)
 texture = ExtResource("1_1xgq5")
 
-[node name="GridContainer" type="GridContainer" parent="TextureRect"]
+[node name="GridContainer" type="GridContainer" parent="TextureRect" unique_id=521522014]
 layout_mode = 1
 offset_left = 26.0
 offset_top = 25.0
@@ -27,7 +27,7 @@ theme_override_constants/h_separation = 43
 theme_override_constants/v_separation = 43
 columns = 5
 
-[node name="MoneyText" type="RichTextLabel" parent="TextureRect"]
+[node name="MoneyText" type="RichTextLabel" parent="TextureRect" unique_id=2090944267]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 180.0
@@ -39,7 +39,7 @@ text = "0
 scroll_active = false
 horizontal_alignment = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TextureRect"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TextureRect" unique_id=325782505]
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 0
 offset_left = 153.33795
@@ -51,7 +51,7 @@ text = "人口"
 scroll_active = false
 autowrap_trim_flags = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect" unique_id=1811556425]
 layout_mode = 0
 offset_left = 187.41306
 offset_top = 179.0
@@ -59,7 +59,7 @@ offset_right = 277.4131
 offset_bottom = 207.0
 theme_override_constants/separation = 0
 
-[node name="PopulationText" type="RichTextLabel" parent="TextureRect/HBoxContainer"]
+[node name="PopulationText" type="RichTextLabel" parent="TextureRect/HBoxContainer" unique_id=1900245763]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 20

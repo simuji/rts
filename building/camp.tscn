@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://v13o8xaigbvg"]
+[gd_scene format=3 uid="uid://v13o8xaigbvg"]
 
 [ext_resource type="PackedScene" uid="uid://druesh2rh5xrk" path="res://building/building.tscn" id="1_ejq38"]
 [ext_resource type="Script" uid="uid://drfprqp23cyfi" path="res://building/camp.gd" id="2_47b5n"]
@@ -8,15 +8,15 @@
 script = ExtResource("3_47b5n")
 metadata/_custom_type_script = "uid://4lp3w6jdgti"
 
-[node name="camp" instance=ExtResource("1_ejq38")]
+[node name="camp" unique_id=480395791 instance=ExtResource("1_ejq38")]
 script = ExtResource("2_47b5n")
 buildingData = SubResource("Resource_oba2t")
 
-[node name="SelectedBox" parent="." index="0"]
+[node name="SelectedBox" parent="." index="0" unique_id=1169206243]
 position = Vector2(-2, -10.000001)
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="1" unique_id=2030575064]
 region_rect = Rect2(304, 128, 64, 64)
 
-[node name="NavigationObstacle2D" parent="." index="2"]
+[node name="NavigationObstacle2D" parent="." index="2" unique_id=1718524814]
 vertices = PackedVector2Array(16, 19, -16, 19, -21, 13, -15, 7, 15, 7, 20, 13)

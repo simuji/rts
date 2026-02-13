@@ -1,12 +1,13 @@
 extends Node
 
 @onready var spawn = preload("res://spawn_ui.tscn")
+@onready var mainBaseScene = preload("res://building/mainBase.tscn")
 var Wood = 0
 var Stone = 0
 var curMouseTarget: Object = null
-var m_buildController = null
-
-var currentFarctionEnum : GameDataConstants.FarctionEnum = GameDataConstants.FarctionEnum.PLAYER1 
+var m_buildController: BuildController = null
+var currentFarctionEnum: String = "player1" 
+#var currentFarctionEnum : GameDataConstants.FarctionEnum = GameDataConstants.FarctionEnum.PLAYER1 
 #游戏中所有建筑列表
 var buildingList: Dictionary[int, BuildingSpawnData] = {}
 var buildingTypeList: Array[String]
@@ -15,9 +16,9 @@ var availableBuildingList: Dictionary[int, BuildingSpawnData] = {}
 #游戏中的个体
 var unitList: Dictionary[int, UnitSpawnData] = {}
 #游戏中所有物品列表
-var itemList: Dictionary[int, ItemData] = {}
+var itemList: Dictionary[int, ItemData_] = {}
 #仓库中物品列表
-var currentItemlList: Dictionary[int, ItemData] = {}
+var currentItemlList: Dictionary[int, ItemData_] = {}
 
 var gameUI : CanvasLayer
 
@@ -27,10 +28,14 @@ var buildingPlaced: Array[Object]
 #保存游戏地图中所有的资源
 var resourcePlaced: Array[Object]
 var focusBuilding: Object
+var centerlocation: Vector2
 
 signal TargetChanged(oldTarget, newTarget)
 
+var units = []
+
 func _ready() -> void:
+	get_units()
 	pass
 	#buildingList[0] = "house"
 	#buildingList[1] = "camp"
@@ -53,7 +58,9 @@ func _input(event: InputEvent) -> void:
 			#切换到招募ui
 			if getFocusBuilding():
 				getFocusBuilding().selectBuilding(false)
-			DataManager.setavailableUnitSpawnList(curMouseTarget.unitList)
+			if curMouseTarget.attribute.farction != PlayerController.currentFarctionEnum:
+				return
+			DataManager.setavailableUnitSpawnList(curMouseTarget.usableUnitList)
 			if ui:
 				ui.changeToRecruitUI()
 			setFocusBuilding(curMouseTarget)
@@ -122,3 +129,42 @@ func bTargetIsBuilding() -> bool:
 	if curMouseTarget == null:
 		return false
 	return curMouseTarget.objectType == GameDataConstants.ObjectTypeEnum.BUILDING
+
+func genearateMainBase():
+	var mainBase:Building = mainBaseScene.instantiate()
+	print("123456", centerlocation)
+	mainBase.position = centerlocation
+	mainBase.setfraction(PlayerController.currentFarctionEnum)
+	mainBase.isPreBuild = true
+	buildingPlaced.append(mainBase)
+	get_tree().current_scene.add_child.call_deferred(mainBase)
+
+
+func get_units():
+	units = []
+	var allunits = get_tree().get_nodes_in_group("Units");
+	for unit in allunits:
+		if unit.attribute.farction == PlayerController.currentFarctionEnum:
+			units.append(unit)
+func _on_area_selected(object):
+	get_units()
+	var start = object.start
+	var end = object.end
+	var area = []
+	area.append(Vector2(min(start.x, end.x), min(start.y, end.y)))
+	area.append(Vector2(max(start.x, end.x), max(start.y, end.y)))
+	var units_in_area = get_units_in_area(area)
+	for u in units: 
+		u.set_selected(false)
+	for u in units_in_area: 
+		u.set_selected(!u.selected)
+	
+func get_units_in_area(area):
+	var u = []
+	for worker in units.duplicate():
+		if worker == null:
+			continue
+		if (worker.position.x > area[0].x) and (worker.position.x < area[1].x):
+			if (worker.position.y > area[0].y) and (worker.position.y < area[1].y):
+				u.append(worker)
+	return u

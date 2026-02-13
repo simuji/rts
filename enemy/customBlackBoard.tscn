@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cma3t6rpucs4m"]
+
+[ext_resource type="Script" uid="uid://dme5f24l0edsf" path="res://addons/beehave/blackboard.gd" id="1_i7jut"]
+
+[node name="CustomBlackBoard" type="Node"]
+script = ExtResource("1_i7jut")
+metadata/_custom_type_script = "uid://dme5f24l0edsf"

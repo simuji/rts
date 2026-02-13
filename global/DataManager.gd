@@ -8,8 +8,8 @@ var archerSpawnData: UnitSpawnData = preload("res://unit/archerSpawnData.tres")
 var houseSpawnData: BuildingSpawnData = preload("res://building/houseSpawnData.tres")
 var campSpawnData: BuildingSpawnData = preload("res://building/campSpawnData.tres")
 
-var wood: ItemData = preload("res://item/Wood.tres")
-var stone: ItemData = preload("res://item/Stone.tres")
+var wood: ItemData_ = preload("res://item/Wood.tres")
+var stone: ItemData_ = preload("res://item/Stone.tres")
 
 var treeResource: ResourceData = preload("res://WorldResource/treeResource.tres")
 var stoneResource: ResourceData = preload("res://WorldResource/stoneResource.tres")
@@ -29,11 +29,12 @@ var buildingSpawnList: Dictionary[int, BuildingSpawnData]
 
 var resourceList: Dictionary[int, ResourceData]
 #物品信息
-var gameItemList: Dictionary[int, ItemData]
+var gameItemList: Dictionary[int, ItemData_]
 var currentItemList: Dictionary[int, int]
 
 var itemDataManager: ItemDataManager
 #科技树 todo
+var resourceforCurrentMap: Array[GameResource] 
 
 func _ready() -> void:
 	itemDataManager = ItemDataManager.new()
@@ -47,7 +48,7 @@ func _ready() -> void:
 	buildingSpawnList[GameDataConstants.BuildingTypeEnum.CAMP] = campSpawnData
 	
 	gameItemList[GameDataConstants.ItemTypeEnum.WOOD] = wood
-	gameItemList[GameDataConstants.ItemTypeEnum.STONE] = stone
+	gameItemList[GameDataConstants.ItemTypeEnum.STONE] = stone 
 	
 	currentItemList[GameDataConstants.ItemTypeEnum.WOOD] = 100
 	currentItemList[GameDataConstants.ItemTypeEnum.STONE] = 100
@@ -85,7 +86,7 @@ func getAvailableBuildingList() -> Array[BuildingSpawnData]:
 func getCurrentItemList() -> Dictionary[int, int]:
 	return currentItemList
 
-func getItemList() -> Dictionary[int, ItemData]:
+func getItemList() -> Dictionary[int, ItemData_]:
 	return gameItemList
 func getResourceList() -> Dictionary[int, ResourceData]:
 	return resourceList
@@ -106,6 +107,11 @@ func getMoney() -> int:
 func setMoney(value: int):
 	value = clamp(value, 0, 99999)
 	money = value
+func addResourceForCurrentLevel(resource: GameResource):
+	resourceforCurrentMap.append(resource)
+func removeaResourceForCurrentLevel(resoure: GameResource):
+	resourceforCurrentMap.erase(resoure)
+	
 class ItemDataManager:
 	signal ItemDataChanged
 	func isHasEnoughItem(list: Dictionary[GameDataConstants.ItemTypeEnum, int]) -> bool:

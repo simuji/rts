@@ -1,10 +1,14 @@
 extends "res://unit/unit.gd"
-
+class_name Worker
 var isChopping = false
 var isMining = false
 @onready var anim = get_node("AnimationPlayer")
 @onready var animTree = $AnimationTree
 @onready var animation_state = animTree.get("parameters/playback")
+
+func _ready() -> void:
+	super._ready()
+	unitType = GameDataConstants.UnitTypeEnum.WORKER
 
 func arrive():
 	if "tree" in currentTargetString:

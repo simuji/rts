@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://drmlpl8okm30n"]
+[gd_resource type="Resource" script_class="ItemData_" load_steps=3 format=3 uid="uid://bhcmc7efwmvum"]
 
 [ext_resource type="Texture2D" uid="uid://gk05xrpxiqst" path="res://UI/I_Wood_Icon.png" id="1_flg25"]
-[ext_resource type="Script" uid="uid://dw2rxb5clskl2" path="res://item/ItemData.gd" id="1_opjm8"]
+[ext_resource type="Script" uid="uid://dw2rxb5clskl2" path="res://item/ItemData1.gd" id="1_opjm8"]
 
 [resource]
 script = ExtResource("1_opjm8")
-itemName = "木头"
+itemName = "Wood"
 itemType = 1
 itemIcon = ExtResource("1_flg25")

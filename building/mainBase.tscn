@@ -1,36 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://xwqdsa1x8pl7"]
+[gd_scene format=3 uid="uid://xwqdsa1x8pl7"]
 
 [ext_resource type="PackedScene" uid="uid://druesh2rh5xrk" path="res://building/building.tscn" id="1_qxkq0"]
 [ext_resource type="Script" uid="uid://4lp3w6jdgti" path="res://building/BuildingSpawnData.gd" id="2_ipltt"]
 
 [sub_resource type="Resource" id="Resource_iq71f"]
 script = ExtResource("2_ipltt")
-farction = 2
 metadata/_custom_type_script = "uid://4lp3w6jdgti"
 
-[node name="building" instance=ExtResource("1_qxkq0")]
+[node name="building" unique_id=1498550854 instance=ExtResource("1_qxkq0")]
 modulate = Color(1, 1, 1, 1)
 position = Vector2(-1, 0)
 buildingData = SubResource("Resource_iq71f")
 
-[node name="SelectedBox" parent="." index="0"]
+[node name="SelectedBox" parent="." index="0" unique_id=1169206243]
 position = Vector2(-4.7683716e-07, -8.398441)
 scale = Vector2(3.5, 3.337402)
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="1" unique_id=2030575064]
 modulate = Color(1, 1, 1, 1)
 region_rect = Rect2(384, 96, 96, 96)
 
-[node name="NavigationObstacle2D" parent="." index="2"]
+[node name="NavigationObstacle2D" parent="." index="2" unique_id=1718524814]
 radius = 45.0
 
-[node name="CollisionShape2D" parent="ClickArea2D" index="0"]
+[node name="CollisionShape2D" parent="ClickArea2D" parent_id_path=PackedInt32Array(1271511626) index="0" unique_id=166139808]
 position = Vector2(-1, -2)
 
-[node name="CollisionShape2D" parent="." index="4"]
-position = Vector2(-1, 21)
-
-[node name="HealthPointProgressBar" parent="." index="6"]
+[node name="HealthPointProgressBar" parent="." index="5" unique_id=1515848011]
 offset_left = -23.0
 offset_top = -49.0
 offset_right = 28.0

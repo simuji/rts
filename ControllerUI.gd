@@ -1,5 +1,5 @@
 extends CanvasLayer
-
+class_name ControllerUI
 var technologyUIResource = preload("res://UI/TecnologyUI.tscn")
 var technologyUI
 # Called when the node enters the scene tree for the first time.

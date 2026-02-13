@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyf2wtytw20wp"]
-
-[ext_resource type="PackedScene" uid="uid://coyq5ryay3gqh" path="res://enemy/EnemyBeehaveTree.tscn" id="1_f01cm"]
-
-[node name="EnemyAgent" type="Node2D"]
-
-[node name="EnemyBeehaveAgent" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("1_f01cm")]
-blackboard = NodePath("@Node@29151")

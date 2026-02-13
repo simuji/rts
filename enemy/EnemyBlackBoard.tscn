@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dnuonl8x2akx2"]
+
+[ext_resource type="Script" uid="uid://ddefl5jhlyctd" path="res://enemy/enemy_black_board.gd" id="1_4uqyo"]
+
+[node name="EnemyBlackBoard" type="Node" unique_id=2102209602]
+script = ExtResource("1_4uqyo")
+metadata/_custom_type_script = "uid://dme5f24l0edsf"

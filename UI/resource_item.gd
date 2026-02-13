@@ -1,5 +1,5 @@
 extends Control
-
+class_name ResourceItem
 @onready var icon_texture = $TextureRect/TextureRect2
 @onready var itemCountText = $RichTextLabel
 @onready var descriptionUI = $ItemDescriptionUI

@@ -1,14 +1,15 @@
 extends TextureButton
-
+class_name BuildItemButton
 var buildType: GameDataConstants.BuildingTypeEnum
 var buildData: BuildingSpawnData
 @onready var textureRect:TextureRect = $TextureRect
 @onready var descriptionUI = $BuildingDescriptionUI
 func _on_pressed() -> void:
-	var buildController = PlayerController.getBuildController()
+	var buildController: BuildController = PlayerController.getBuildController()
 	if buildController:
 		print("startBuild")
-		buildController.build(buildData);
+		buildData.setFarction(PlayerController.currentFarctionEnum)
+		buildController.buildByPlayer(buildData);
 
 func setBuildData(data: BuildingSpawnData):
 	buildData = data
